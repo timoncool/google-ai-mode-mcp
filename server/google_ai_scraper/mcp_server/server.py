@@ -371,9 +371,9 @@ async def _request(method: str, path: str, **kwargs) -> dict:
 
 ERROR_HINTS = {
     "google_captcha": "Google asked for a CAPTCHA. Open https://www.google.com/search?udm=50&q=test in the browser, solve it, then retry.",
-    "tab_timeout": "Google did not finish an answer in time. Retry, or use mode='fast'.",
+    "tab_timeout": "Google did not finish an answer in time. Retry the search.",
     "no_ai_overview": "Google showed no AI answer for this query. Rephrase it as a question.",
-    "quota_exhausted_all_accounts": "Google AI Mode quota is used up on every signed-in account. Retry later or with mode='fast'.",
+    "quota_exhausted_all_accounts": "Google AI Mode quota is used up on every signed-in account. Retry later.",
     "follow_up_textbox_not_found": "The follow-up box was not found on the page. Start a new search instead.",
     "thread_tab_not_found": "This thread is gone. Start a new search instead.",
 }
@@ -414,14 +414,17 @@ async def search(
     hl: str | None = None,
     gl: str | None = None,
 ) -> str:
-    """Search Google AI Overview. Returns markdown + citations + thread_id for follow-ups. Threads auto-expire after 2 min inactivity (30 min when GOOGLE_AI_SCRAPER_CLOSE_AFTER_SEARCH is set).
+    """Ask Google AI Mode. Returns markdown + citations + thread_id for follow-ups. Threads auto-expire after 2 min inactivity (30 min when GOOGLE_AI_SCRAPER_CLOSE_AFTER_SEARCH is set).
+
+    Write one complete, neutral question, not keywords. Name the source you trust inside it
+    ("cite the official PostgreSQL documentation"), put limits in words rather than site:/after:
+    operators, and say the answer's shape ("give the command and a one-line explanation; no
+    follow-up offers"). For multi-step questions ask for the intermediate facts with sources.
 
     Args:
-        query: The search query.
-        mode: "pro" (default) uses Google's advanced AI model for detailed, multi-source responses.
-              "fast" uses the standard AI model — faster but less detailed.
-              Use "fast" for simple fact lookups (definitions, dates, conversions).
-              Use "pro" for research, comparisons, or questions needing multiple sources.
+        query: The question.
+        mode: "pro" (default). "fast" uses Google's standard model; it was not faster on simple
+              facts in tests and returned fewer sources, so keep the default.
         authuser: Google account index (0, 1, 2, ...) to use for this search.
                   If omitted, uses the account selected in the browser extension.
                   On quota exhaustion, the extension auto-rotates through available accounts.

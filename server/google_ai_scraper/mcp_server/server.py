@@ -533,7 +533,7 @@ def _parent_watchdog():
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Google AI Scraper MCP Server")
+    parser = argparse.ArgumentParser(description="Google AI Mode MCP server")
     parser.add_argument("--sse", action="store_true", help="Run with SSE transport (default: stdio)")
     parser.add_argument("--no-server", action="store_true", help="Don't auto-start or reuse the shared FastAPI backend")
     parser.add_argument("--backend", action="store_true", help="Run only the shared FastAPI backend process")

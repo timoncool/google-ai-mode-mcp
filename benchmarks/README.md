@@ -2,6 +2,8 @@
 
 Run of 7 November 2026. 25 questions, three search tools an AI coding assistant can call, one blind AI judge. Every input, raw output, verdict and script is in this folder, so the numbers below can be recomputed and the run repeated with other tools ([PROCEDURE.md](PROCEDURE.md)).
 
+**Follow-up:** the same questions asked by the `google-ai-mode` skill's templates. The answer cites an official or primary source in 22 of 24 questions instead of 13, is half as long and has no closing offers, at the same correctness: [2026-11-07-skill](2026-11-07-skill/README.md).
+
 ## Result
 
 | | Google AI Mode MCP | Claude Code WebSearch | Exa `web_search_exa` |

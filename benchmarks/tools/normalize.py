@@ -72,7 +72,7 @@ def main(raw_path, questions_path, review_dir, mapping_path, seed="20261107"):
     for question in questions:
         entries = []
         for tool, run in raw[question["id"]].items():
-            body, sources = NORMALIZERS[tool](run["output"])
+            body, sources = NORMALIZERS[tool.split(":")[0]](run["output"])
             while True:
                 answer_id = rng.choice(string.ascii_uppercase) + str(rng.randint(10, 99))
                 if answer_id not in used:

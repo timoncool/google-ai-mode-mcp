@@ -1,5 +1,20 @@
 {
  "summary": {
+  "exa": {
+   "wins": 10,
+   "mean_rank": 1.88,
+   "correct": 1.92,
+   "complete": 1.88,
+   "sources": 1.96,
+   "focus": 1,
+   "total_of_8": 6.76,
+   "self_sufficient": 24,
+   "fully_correct": 23,
+   "median_s": 0.95,
+   "mean_s": 0.94,
+   "median_chars": 15498,
+   "total_chars": 433004
+  },
   "google_ai_mode": {
    "wins": 10,
    "mean_rank": 1.76,
@@ -29,21 +44,6 @@
    "mean_s": 4.98,
    "median_chars": 787,
    "total_chars": 21194
-  },
-  "exa": {
-   "wins": 10,
-   "mean_rank": 1.88,
-   "correct": 1.92,
-   "complete": 1.88,
-   "sources": 1.96,
-   "focus": 1,
-   "total_of_8": 6.76,
-   "self_sufficient": 24,
-   "fully_correct": 23,
-   "median_s": 0.95,
-   "mean_s": 0.94,
-   "median_chars": 15498,
-   "total_chars": 433004
   }
  },
  "wins_by_topic": {

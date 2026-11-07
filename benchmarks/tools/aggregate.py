@@ -9,6 +9,11 @@ from collections import Counter, defaultdict
 from pathlib import Path
 
 LABELS = {"google_ai_mode": "Google AI Mode MCP", "websearch": "Claude Code WebSearch", "exa": "Exa web_search_exa"}
+
+
+def label(tool):
+    base, _, variant = tool.partition(":")
+    return LABELS.get(base, base) + (f" ({variant})" if variant else "")
 CRITERIA = ["correct", "complete", "sources", "focus"]
 
 
@@ -38,8 +43,9 @@ def main(bench_dir):
         raise SystemExit(f"[ERROR] {len(rows)} verdicts for {len(questions)} questions")
     rows.sort(key=lambda r: r["qid"])
 
+    tools = sorted({t for ids in mapping.values() for t in ids.values()})
     summary = {}
-    for tool in LABELS:
+    for tool in tools:
         scores = [r["scores"][tool] for r in rows]
         summary[tool] = {
             "wins": sum(r["best"] == tool for r in rows),
@@ -61,7 +67,7 @@ def main(bench_dir):
     json.dump(result, open(bench / "results.json", "w", encoding="utf-8"), ensure_ascii=False, indent=1)
 
     for tool, s in summary.items():
-        print(f"{LABELS[tool]:24} wins={s['wins']:2} rank={s['mean_rank']} score8={s['total_of_8']} "
+        print(f"{label(tool):36} wins={s['wins']:2} rank={s['mean_rank']} score8={s['total_of_8']} "
               f"correct={s['correct']} complete={s['complete']} sources={s['sources']} focus={s['focus']} "
               f"self_suff={s['self_sufficient']}/25 fully_correct={s['fully_correct']}/25 "
               f"median={s['median_s']}s chars_med={s['median_chars']}")
@@ -69,7 +75,7 @@ def main(bench_dir):
         print(topic, dict(counter))
     for r in rows:
         print(r["qid"], "best:", r["best"], "| rank:", ">".join(r["ranking"]),
-              "|", " ".join(f"{t}={sum(r['scores'][t][c] for c in CRITERIA)}" for t in LABELS))
+              "|", " ".join(f"{t}={sum(r['scores'][t][c] for c in CRITERIA)}" for t in tools))
 
 
 if __name__ == "__main__":

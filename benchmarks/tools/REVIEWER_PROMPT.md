@@ -3,7 +3,7 @@ You are an independent judge in a blind evaluation of web-search tools for AI as
 Read ONLY this file, all of it (read it in parts if it is long): {BATCH}
 Do not open any other file, do not search the web, do not run commands. Your only output is the verdict file below.
 
-The file holds 5 questions. Each question has a reference answer, a reference source and three outputs, each under a random id (for example `=== OUTPUT K42 ===`). Each output is exactly what an AI assistant received back from one search tool when it asked that question. Some outputs are written answers, some are raw extracts of web pages. The ids are random and the order is shuffled; do not try to guess which system produced which output, it does not matter.
+The file holds 5 questions. Each question has a reference answer, a reference source and several outputs, each under a random id (for example `=== OUTPUT K42 ===`). Each output is exactly what an AI assistant received back from one search tool when it asked that question. Some outputs are written answers, some are raw extracts of web pages. The ids are random and the order is shuffled; do not try to guess which system produced which output, it does not matter.
 
 Judge every output as material an assistant gets to answer the user. Use the same criteria for every format: do not reward or penalize a format as such, only what the assistant can get from it. Length is not merit.
 
@@ -15,14 +15,14 @@ Score each output:
 - `self_sufficient` true/false: could an assistant give the user a correct final answer from this output alone, without another search?
 - `issues`: one short sentence on the concrete defects you saw (wrong facts, leftovers, noise), or "".
 
-Then rank the three outputs for this question from best to worst for an assistant that needs to answer the user correctly, quickly and with sources, and name the best one.
+Then rank all outputs of this question from best to worst for an assistant that needs to answer the user correctly, quickly and with sources, and name the best one.
 
 Write the verdict with the Write tool to {VERDICT} as JSON, exactly this shape:
 
 {"batch": "{BATCH_NAME}", "questions": [
   {"qid": "q01",
-   "scores": {"<id>": {"correct": 2, "complete": 2, "sources": 2, "focus": 2, "self_sufficient": true, "issues": ""}, "<id>": {...}, "<id>": {...}},
-   "ranking": ["<best id>", "<second id>", "<third id>"],
+   "scores": {"<id>": {"correct": 2, "complete": 2, "sources": 2, "focus": 2, "self_sufficient": true, "issues": ""}, "<id>": {...}},
+   "ranking": ["<best id>", "<second id>", "..."],
    "best": "<best id>",
    "rationale": "two or three sentences on why the best one wins and what the others lack"}
 ]}

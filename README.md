@@ -112,7 +112,7 @@ Ask in the language you want the answer in: the answer follows the language of t
 | Median time | 3.1 s | 5.1 s | **0.95 s** |
 | Text handed to the assistant, 25 answers | 31k chars | 21k chars | 433k chars |
 
-AI Mode gives the best answers overall at a fraction of Exa's text; Exa is fastest and has the best sources, WebSearch is right least often. Full report, every raw output and verdict, and a procedure to benchmark any search tool: [benchmarks/](benchmarks/README.md).
+AI Mode gives the best answers overall at a fraction of Exa's text; Exa is fastest and has the best sources, WebSearch is right least often. Asked the way the [skill](skills/google-ai-mode/SKILL.md) teaches, AI Mode cites an official or primary source in 22 of 24 answers instead of 13, with half the text ([before/after](benchmarks/2026-11-07-skill/README.md)). Full report, every raw output and verdict, and a procedure to benchmark any search tool: [benchmarks/](benchmarks/README.md).
 
 ## How it works
 

@@ -71,6 +71,16 @@ It checks that every verdict uses exactly the ids of its question, maps them bac
 - output size;
 - per-question scores with the judge's notes.
 
+## Before and after a change to how you ask
+
+To see whether a change in the queries (a skill, a prompt template) helps one tool, compare variants of that tool rather than tools:
+
+1. Write the new wording for every question into a `{"q01": "…"}` file before running.
+2. On the same build, run every question verbatim and with the new wording, one call at a time.
+3. Collect both runs as variants: `python tools/extract_variants.py <session.jsonl> <tool name> <base raw.json> raw.json plain=@question skill=skill_queries.json`.
+4. Write `checks.json` before comparing: the reference facts as keyword groups and the primary-source domains for each question. Then run `python tools/objective_metrics.py <run_dir> <tool>:plain <tool>:skill`.
+5. The blind judge (steps 4–6) still applies when correctness itself may change; the keyword check only proves a fact is present.
+
 ## 7. Verify before you conclude
 
 - **Check what you blame on your tool.** Treat every defect the judge names against your own tool as a lead, not a fact. Reproduce it on the live tool before fixing it, and separate defects of your tool from the behaviour of the service behind it. In the 2026-11-07 run, "no sources" turned out to be Google showing none, while "Use code with caution" was a real extraction bug.

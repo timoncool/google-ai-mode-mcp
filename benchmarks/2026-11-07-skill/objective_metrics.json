@@ -1,0 +1,764 @@
+{
+ "summary": {
+  "run1": {
+   "facts_present": 25,
+   "primary_cited": "10/24",
+   "no_sources": 3,
+   "median_sources": 4,
+   "ends_with_offer": 22,
+   "ui_leaks": 6,
+   "median_chars": 1095,
+   "total_chars": 31479,
+   "median_seconds": 3.13
+  },
+  "google_ai_mode:plain": {
+   "facts_present": 25,
+   "primary_cited": "13/24",
+   "no_sources": 2,
+   "median_sources": 4,
+   "ends_with_offer": 23,
+   "ui_leaks": 0,
+   "median_chars": 1085,
+   "total_chars": 29495,
+   "median_seconds": 3.02
+  },
+  "google_ai_mode:skill": {
+   "facts_present": 25,
+   "primary_cited": "22/24",
+   "no_sources": 0,
+   "median_sources": 3,
+   "ends_with_offer": 0,
+   "ui_leaks": 0,
+   "median_chars": 532,
+   "total_chars": 15974,
+   "median_seconds": 3.18
+  }
+ },
+ "per_question": {
+  "q01": {
+   "run1": {
+    "facts": true,
+    "primary": true,
+    "sources": 7,
+    "offer": true,
+    "ui_leak": false,
+    "chars": 1012,
+    "seconds": 3.5
+   },
+   "google_ai_mode:plain": {
+    "facts": true,
+    "primary": true,
+    "sources": 7,
+    "offer": true,
+    "ui_leak": false,
+    "chars": 1084,
+    "seconds": 2.77
+   },
+   "google_ai_mode:skill": {
+    "facts": true,
+    "primary": true,
+    "sources": 3,
+    "offer": false,
+    "ui_leak": false,
+    "chars": 369,
+    "seconds": 2.96
+   }
+  },
+  "q02": {
+   "run1": {
+    "facts": true,
+    "primary": false,
+    "sources": 2,
+    "offer": true,
+    "ui_leak": false,
+    "chars": 801,
+    "seconds": 2.34
+   },
+   "google_ai_mode:plain": {
+    "facts": true,
+    "primary": true,
+    "sources": 6,
+    "offer": true,
+    "ui_leak": false,
+    "chars": 1119,
+    "seconds": 2.57
+   },
+   "google_ai_mode:skill": {
+    "facts": true,
+    "primary": true,
+    "sources": 1,
+    "offer": false,
+    "ui_leak": false,
+    "chars": 463,
+    "seconds": 3.2
+   }
+  },
+  "q03": {
+   "run1": {
+    "facts": true,
+    "primary": false,
+    "sources": 3,
+    "offer": true,
+    "ui_leak": false,
+    "chars": 1122,
+    "seconds": 2.36
+   },
+   "google_ai_mode:plain": {
+    "facts": true,
+    "primary": false,
+    "sources": 3,
+    "offer": true,
+    "ui_leak": false,
+    "chars": 1085,
+    "seconds": 2.27
+   },
+   "google_ai_mode:skill": {
+    "facts": true,
+    "primary": true,
+    "sources": 1,
+    "offer": false,
+    "ui_leak": false,
+    "chars": 491,
+    "seconds": 2.74
+   }
+  },
+  "q04": {
+   "run1": {
+    "facts": true,
+    "primary": true,
+    "sources": 3,
+    "offer": true,
+    "ui_leak": false,
+    "chars": 639,
+    "seconds": 2.09
+   },
+   "google_ai_mode:plain": {
+    "facts": true,
+    "primary": true,
+    "sources": 1,
+    "offer": true,
+    "ui_leak": false,
+    "chars": 587,
+    "seconds": 2.06
+   },
+   "google_ai_mode:skill": {
+    "facts": true,
+    "primary": true,
+    "sources": 3,
+    "offer": false,
+    "ui_leak": false,
+    "chars": 410,
+    "seconds": 2.95
+   }
+  },
+  "q05": {
+   "run1": {
+    "facts": true,
+    "primary": true,
+    "sources": 5,
+    "offer": true,
+    "ui_leak": false,
+    "chars": 1613,
+    "seconds": 4.78
+   },
+   "google_ai_mode:plain": {
+    "facts": true,
+    "primary": true,
+    "sources": 5,
+    "offer": true,
+    "ui_leak": false,
+    "chars": 1545,
+    "seconds": 4.34
+   },
+   "google_ai_mode:skill": {
+    "facts": true,
+    "primary": true,
+    "sources": 5,
+    "offer": false,
+    "ui_leak": false,
+    "chars": 486,
+    "seconds": 2.96
+   }
+  },
+  "q06": {
+   "run1": {
+    "facts": true,
+    "primary": true,
+    "sources": 6,
+    "offer": true,
+    "ui_leak": false,
+    "chars": 1313,
+    "seconds": 3.47
+   },
+   "google_ai_mode:plain": {
+    "facts": true,
+    "primary": true,
+    "sources": 4,
+    "offer": true,
+    "ui_leak": false,
+    "chars": 985,
+    "seconds": 3.41
+   },
+   "google_ai_mode:skill": {
+    "facts": true,
+    "primary": true,
+    "sources": 2,
+    "offer": false,
+    "ui_leak": false,
+    "chars": 664,
+    "seconds": 2.96
+   }
+  },
+  "q07": {
+   "run1": {
+    "facts": true,
+    "primary": false,
+    "sources": 6,
+    "offer": true,
+    "ui_leak": false,
+    "chars": 1341,
+    "seconds": 3.21
+   },
+   "google_ai_mode:plain": {
+    "facts": true,
+    "primary": true,
+    "sources": 6,
+    "offer": true,
+    "ui_leak": false,
+    "chars": 1212,
+    "seconds": 4.0
+   },
+   "google_ai_mode:skill": {
+    "facts": true,
+    "primary": true,
+    "sources": 3,
+    "offer": false,
+    "ui_leak": false,
+    "chars": 666,
+    "seconds": 3.14
+   }
+  },
+  "q08": {
+   "run1": {
+    "facts": true,
+    "primary": false,
+    "sources": 0,
+    "offer": true,
+    "ui_leak": false,
+    "chars": 451,
+    "seconds": 1.69
+   },
+   "google_ai_mode:plain": {
+    "facts": true,
+    "primary": false,
+    "sources": 0,
+    "offer": true,
+    "ui_leak": false,
+    "chars": 344,
+    "seconds": 1.59
+   },
+   "google_ai_mode:skill": {
+    "facts": true,
+    "primary": true,
+    "sources": 3,
+    "offer": false,
+    "ui_leak": false,
+    "chars": 475,
+    "seconds": 2.99
+   }
+  },
+  "q09": {
+   "run1": {
+    "facts": true,
+    "primary": true,
+    "sources": 6,
+    "offer": false,
+    "ui_leak": true,
+    "chars": 1892,
+    "seconds": 3.13
+   },
+   "google_ai_mode:plain": {
+    "facts": true,
+    "primary": true,
+    "sources": 4,
+    "offer": true,
+    "ui_leak": false,
+    "chars": 1877,
+    "seconds": 3.94
+   },
+   "google_ai_mode:skill": {
+    "facts": true,
+    "primary": true,
+    "sources": 2,
+    "offer": false,
+    "ui_leak": false,
+    "chars": 530,
+    "seconds": 3.08
+   }
+  },
+  "q10": {
+   "run1": {
+    "facts": true,
+    "primary": true,
+    "sources": 8,
+    "offer": false,
+    "ui_leak": true,
+    "chars": 2051,
+    "seconds": 3.25
+   },
+   "google_ai_mode:plain": {
+    "facts": true,
+    "primary": true,
+    "sources": 5,
+    "offer": true,
+    "ui_leak": false,
+    "chars": 1952,
+    "seconds": 3.05
+   },
+   "google_ai_mode:skill": {
+    "facts": true,
+    "primary": true,
+    "sources": 5,
+    "offer": false,
+    "ui_leak": false,
+    "chars": 616,
+    "seconds": 3.42
+   }
+  },
+  "q11": {
+   "run1": {
+    "facts": true,
+    "primary": false,
+    "sources": 2,
+    "offer": true,
+    "ui_leak": false,
+    "chars": 536,
+    "seconds": 2.55
+   },
+   "google_ai_mode:plain": {
+    "facts": true,
+    "primary": false,
+    "sources": 3,
+    "offer": true,
+    "ui_leak": false,
+    "chars": 1035,
+    "seconds": 2.75
+   },
+   "google_ai_mode:skill": {
+    "facts": true,
+    "primary": true,
+    "sources": 4,
+    "offer": false,
+    "ui_leak": false,
+    "chars": 907,
+    "seconds": 3.93
+   }
+  },
+  "q12": {
+   "run1": {
+    "facts": true,
+    "primary": true,
+    "sources": 3,
+    "offer": true,
+    "ui_leak": false,
+    "chars": 722,
+    "seconds": 3.33
+   },
+   "google_ai_mode:plain": {
+    "facts": true,
+    "primary": true,
+    "sources": 3,
+    "offer": true,
+    "ui_leak": false,
+    "chars": 688,
+    "seconds": 2.98
+   },
+   "google_ai_mode:skill": {
+    "facts": true,
+    "primary": true,
+    "sources": 3,
+    "offer": false,
+    "ui_leak": false,
+    "chars": 677,
+    "seconds": 3.5
+   }
+  },
+  "q13": {
+   "run1": {
+    "facts": true,
+    "primary": false,
+    "sources": 0,
+    "offer": true,
+    "ui_leak": false,
+    "chars": 937,
+    "seconds": 3.03
+   },
+   "google_ai_mode:plain": {
+    "facts": true,
+    "primary": false,
+    "sources": 2,
+    "offer": true,
+    "ui_leak": false,
+    "chars": 745,
+    "seconds": 4.13
+   },
+   "google_ai_mode:skill": {
+    "facts": true,
+    "primary": true,
+    "sources": 2,
+    "offer": false,
+    "ui_leak": false,
+    "chars": 583,
+    "seconds": 4.47
+   }
+  },
+  "q14": {
+   "run1": {
+    "facts": true,
+    "primary": true,
+    "sources": 7,
+    "offer": true,
+    "ui_leak": false,
+    "chars": 1960,
+    "seconds": 3.37
+   },
+   "google_ai_mode:plain": {
+    "facts": true,
+    "primary": true,
+    "sources": 5,
+    "offer": true,
+    "ui_leak": false,
+    "chars": 1455,
+    "seconds": 3.28
+   },
+   "google_ai_mode:skill": {
+    "facts": true,
+    "primary": true,
+    "sources": 3,
+    "offer": false,
+    "ui_leak": false,
+    "chars": 980,
+    "seconds": 3.42
+   }
+  },
+  "q15": {
+   "run1": {
+    "facts": true,
+    "primary": false,
+    "sources": 4,
+    "offer": true,
+    "ui_leak": false,
+    "chars": 954,
+    "seconds": 1.31
+   },
+   "google_ai_mode:plain": {
+    "facts": true,
+    "primary": false,
+    "sources": 4,
+    "offer": true,
+    "ui_leak": false,
+    "chars": 1332,
+    "seconds": 0.95
+   },
+   "google_ai_mode:skill": {
+    "facts": true,
+    "primary": true,
+    "sources": 1,
+    "offer": false,
+    "ui_leak": false,
+    "chars": 434,
+    "seconds": 3.78
+   }
+  },
+  "q16": {
+   "run1": {
+    "facts": true,
+    "primary": false,
+    "sources": 5,
+    "offer": true,
+    "ui_leak": false,
+    "chars": 1485,
+    "seconds": 2.68
+   },
+   "google_ai_mode:plain": {
+    "facts": true,
+    "primary": false,
+    "sources": 4,
+    "offer": true,
+    "ui_leak": false,
+    "chars": 1243,
+    "seconds": 2.71
+   },
+   "google_ai_mode:skill": {
+    "facts": true,
+    "primary": true,
+    "sources": 3,
+    "offer": false,
+    "ui_leak": false,
+    "chars": 276,
+    "seconds": 1.94
+   }
+  },
+  "q17": {
+   "run1": {
+    "facts": true,
+    "primary": false,
+    "sources": 5,
+    "offer": true,
+    "ui_leak": true,
+    "chars": 2255,
+    "seconds": 3.52
+   },
+   "google_ai_mode:plain": {
+    "facts": true,
+    "primary": false,
+    "sources": 3,
+    "offer": false,
+    "ui_leak": false,
+    "chars": 1955,
+    "seconds": 3.36
+   },
+   "google_ai_mode:skill": {
+    "facts": true,
+    "primary": true,
+    "sources": 3,
+    "offer": false,
+    "ui_leak": false,
+    "chars": 273,
+    "seconds": 2.78
+   }
+  },
+  "q18": {
+   "run1": {
+    "facts": true,
+    "primary": false,
+    "sources": 6,
+    "offer": true,
+    "ui_leak": true,
+    "chars": 2103,
+    "seconds": 3.47
+   },
+   "google_ai_mode:plain": {
+    "facts": true,
+    "primary": false,
+    "sources": 5,
+    "offer": true,
+    "ui_leak": false,
+    "chars": 2012,
+    "seconds": 3.38
+   },
+   "google_ai_mode:skill": {
+    "facts": true,
+    "primary": true,
+    "sources": 3,
+    "offer": false,
+    "ui_leak": false,
+    "chars": 409,
+    "seconds": 3.39
+   }
+  },
+  "q19": {
+   "run1": {
+    "facts": true,
+    "primary": true,
+    "sources": 4,
+    "offer": true,
+    "ui_leak": true,
+    "chars": 2095,
+    "seconds": 3.68
+   },
+   "google_ai_mode:plain": {
+    "facts": true,
+    "primary": false,
+    "sources": 3,
+    "offer": true,
+    "ui_leak": false,
+    "chars": 1555,
+    "seconds": 3.03
+   },
+   "google_ai_mode:skill": {
+    "facts": true,
+    "primary": true,
+    "sources": 2,
+    "offer": false,
+    "ui_leak": false,
+    "chars": 448,
+    "seconds": 2.73
+   }
+  },
+  "q20": {
+   "run1": {
+    "facts": true,
+    "primary": false,
+    "sources": 5,
+    "offer": true,
+    "ui_leak": true,
+    "chars": 2822,
+    "seconds": 3.88
+   },
+   "google_ai_mode:plain": {
+    "facts": true,
+    "primary": false,
+    "sources": 5,
+    "offer": true,
+    "ui_leak": false,
+    "chars": 2543,
+    "seconds": 3.8
+   },
+   "google_ai_mode:skill": {
+    "facts": true,
+    "primary": true,
+    "sources": 1,
+    "offer": false,
+    "ui_leak": false,
+    "chars": 573,
+    "seconds": 3.12
+   }
+  },
+  "q21": {
+   "run1": {
+    "facts": true,
+    "primary": true,
+    "sources": 1,
+    "offer": true,
+    "ui_leak": false,
+    "chars": 563,
+    "seconds": 2.42
+   },
+   "google_ai_mode:plain": {
+    "facts": true,
+    "primary": true,
+    "sources": 1,
+    "offer": true,
+    "ui_leak": false,
+    "chars": 517,
+    "seconds": 3.02
+   },
+   "google_ai_mode:skill": {
+    "facts": true,
+    "primary": true,
+    "sources": 4,
+    "offer": false,
+    "ui_leak": false,
+    "chars": 1072,
+    "seconds": 3.5
+   }
+  },
+  "q22": {
+   "run1": {
+    "facts": true,
+    "primary": false,
+    "sources": 6,
+    "offer": true,
+    "ui_leak": false,
+    "chars": 1095,
+    "seconds": 2.72
+   },
+   "google_ai_mode:plain": {
+    "facts": true,
+    "primary": true,
+    "sources": 7,
+    "offer": true,
+    "ui_leak": false,
+    "chars": 940,
+    "seconds": 2.58
+   },
+   "google_ai_mode:skill": {
+    "facts": true,
+    "primary": false,
+    "sources": 5,
+    "offer": false,
+    "ui_leak": false,
+    "chars": 1344,
+    "seconds": 3.64
+   }
+  },
+  "q23": {
+   "run1": {
+    "facts": true,
+    "primary": null,
+    "sources": 4,
+    "offer": true,
+    "ui_leak": false,
+    "chars": 695,
+    "seconds": 2.76
+   },
+   "google_ai_mode:plain": {
+    "facts": true,
+    "primary": null,
+    "sources": 5,
+    "offer": true,
+    "ui_leak": false,
+    "chars": 847,
+    "seconds": 2.9
+   },
+   "google_ai_mode:skill": {
+    "facts": true,
+    "primary": null,
+    "sources": 2,
+    "offer": false,
+    "ui_leak": false,
+    "chars": 870,
+    "seconds": 3.73
+   }
+  },
+  "q24": {
+   "run1": {
+    "facts": true,
+    "primary": false,
+    "sources": 0,
+    "offer": false,
+    "ui_leak": false,
+    "chars": 260,
+    "seconds": 1.35
+   },
+   "google_ai_mode:plain": {
+    "facts": true,
+    "primary": true,
+    "sources": 4,
+    "offer": false,
+    "ui_leak": false,
+    "chars": 220,
+    "seconds": 2.92
+   },
+   "google_ai_mode:skill": {
+    "facts": true,
+    "primary": false,
+    "sources": 2,
+    "offer": false,
+    "ui_leak": false,
+    "chars": 532,
+    "seconds": 3.18
+   }
+  },
+  "q25": {
+   "run1": {
+    "facts": true,
+    "primary": false,
+    "sources": 2,
+    "offer": true,
+    "ui_leak": false,
+    "chars": 762,
+    "seconds": 3.17
+   },
+   "google_ai_mode:plain": {
+    "facts": true,
+    "primary": false,
+    "sources": 0,
+    "offer": true,
+    "ui_leak": false,
+    "chars": 618,
+    "seconds": 3.22
+   },
+   "google_ai_mode:skill": {
+    "facts": true,
+    "primary": true,
+    "sources": 6,
+    "offer": false,
+    "ui_leak": false,
+    "chars": 1426,
+    "seconds": 4.33
+   }
+  }
+ }
+}

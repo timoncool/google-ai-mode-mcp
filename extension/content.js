@@ -274,6 +274,7 @@
     const flush = () => {
       if (!run) return;
       if (level === 0) out += run;
+      else if (level < 0 && /^[∘°]$/.test(run.normalize("NFKC"))) out += "°";
       else out += (level < 0 ? "^" : "_") + (/^[\p{L}\p{N}]+$/u.test(run.normalize("NFKC")) ? run : `(${run})`);
       run = "";
     };
@@ -302,14 +303,11 @@
   }
 
   // The footer of an answer holds the rating buttons, the legal links and the
-  // AI disclaimer. Its legal links live in a hidden menu, so it is recognised
-  // on the live tree, before hidden elements are dropped.
+  // AI disclaimer. Answer text may cite Google's own help pages, so only the
+  // rating buttons mark the footer; it is recognised on the live tree, before
+  // hidden elements are dropped.
   function isAnswerFooter(el) {
-    return Boolean(
-      el.querySelector(
-        '[data-snt], a[href*="policies.google.com"], a[href*="support.google.com/websearch"]'
-      )
-    );
+    return Boolean(el.querySelector("[data-snt]"));
   }
 
   // The answer DOM carries hidden UI text (copy toasts, share dialog, feedback
@@ -447,7 +445,7 @@
       return false;
     }
 
-    const alnumLength = text.replace(/[^a-z0-9]/gi, "").length;
+    const alnumLength = text.replace(/[^\p{L}\p{N}]/gu, "").length;
     return alnumLength >= 7;
   }
 

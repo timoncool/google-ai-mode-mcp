@@ -39,7 +39,7 @@ let threadTabs = new Map();
 let pollInFlight = false;
 let isInitialized = false;
 const startupPromise = initialize().catch((error) => {
-  console.error("Google AI Scraper failed to initialize", error);
+  console.error("Google AI Mode MCP failed to initialize", error);
 });
 
 function normalizeAccountIndex(value, fallback = 0) {

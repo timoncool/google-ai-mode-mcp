@@ -1,7 +1,7 @@
 {
-  "extName": { "message": "Google AI Overview Scraper" },
-  "extDescription": { "message": "Google AI Overviews as clean Markdown with citations for Claude Code, Cursor & MCP clients. No API keys, 100% local." },
-  "popupSubtitle": { "message": "AI Overview relay" },
+  "extName": { "message": "Google AI Mode MCP" },
+  "extDescription": { "message": "Google AI Mode answers in Markdown with citations for Claude Code, Cursor and other MCP clients. No API keys, all local." },
+  "popupSubtitle": { "message": "Bridge to Google AI Mode" },
   "refreshAccounts": { "message": "Refresh accounts" },
   "settings": { "message": "Settings" },
   "checkingServer": { "message": "Checking server..." },

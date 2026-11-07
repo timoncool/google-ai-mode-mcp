@@ -2,9 +2,9 @@
   "manifest_version": 3,
   "name": "__MSG_extName__",
   "default_locale": "en",
-  "version": "2.9",
+  "version": "2.12",
   "description": "__MSG_extDescription__",
-  "homepage_url": "https://github.com/balakumardev/google-ai-scraper",
+  "homepage_url": "https://github.com/timoncool/google-ai-mode-mcp",
   "permissions": [
     "tabs",
     "scripting",
@@ -28,7 +28,7 @@
   },
   "action": {
     "default_popup": "popup.html",
-    "default_title": "Google AI Scraper"
+    "default_title": "__MSG_extName__"
   },
   "background": {
     "scripts": [
@@ -41,7 +41,7 @@
   },
   "browser_specific_settings": {
     "gecko": {
-      "id": "google-ai-overview-scraper@balakumar.dev",
+      "id": "google-ai-mode-mcp@timoncool",
       "data_collection_permissions": {
         "required": [
           "none"

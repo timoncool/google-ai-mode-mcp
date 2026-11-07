@@ -1,5 +1,5 @@
 {
-  "extName": { "message": "Google AI Overview Scraper" },
+  "extName": { "message": "Google AI Mode MCP" },
   "extDescription": { "message": "Ответы режима ИИ Google в Markdown с источниками для Claude Code, Cursor и других MCP-клиентов. Без ключей API, всё локально." },
   "popupSubtitle": { "message": "Мост к режиму ИИ Google" },
   "refreshAccounts": { "message": "Обновить аккаунты" },

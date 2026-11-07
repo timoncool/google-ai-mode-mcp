@@ -289,7 +289,7 @@
       run += glyph.textContent;
     }
     flush();
-    return out.normalize("NFKC");
+    return out.normalize("NFKC").replace(/∘(?=[_^(]*[CFK])/g, "°");
   }
 
   function mathHolderText(holder) {
@@ -323,7 +323,10 @@
     const mathTexts = holders.map(mathHolderText);
 
     const hidden = [];
-    const visit = (el) => {
+    // Google wraps some names inside a sentence in divs laid out as inline;
+    // Turndown treats every div as a block, so they become spans in the clone.
+    const inlineDivs = [];
+    const visit = (el, parentInline) => {
       if (el.hasAttribute("data-gas-math")) return;
       const style = getComputedStyle(el);
       if (
@@ -334,17 +337,27 @@
         hidden.push(el);
         return;
       }
-      for (const child of el.children) visit(child);
+      const inline =
+        style.display.startsWith("inline") || (style.display === "contents" && parentInline);
+      if (el.tagName === "DIV" && inline) inlineDivs.push(el);
+      for (const child of el.children) visit(child, inline);
     };
-    for (const child of root.children) visit(child);
+    for (const child of root.children) visit(child, false);
     const wrapper =
       root.querySelector('[data-container-id="main-col"]')?.children[0] || root.children[0];
     hidden.push(...[...(wrapper?.children || [])].filter(isAnswerFooter));
     hidden.forEach((el) => el.setAttribute("data-gas-hidden", ""));
+    inlineDivs.forEach((el) => el.setAttribute("data-gas-inline", ""));
     const clone = root.cloneNode(true);
     hidden.forEach((el) => el.removeAttribute("data-gas-hidden"));
+    inlineDivs.forEach((el) => el.removeAttribute("data-gas-inline"));
     holders.forEach((holder) => holder.removeAttribute("data-gas-math"));
     clone.querySelectorAll("[data-gas-hidden]").forEach((el) => el.remove());
+    clone.querySelectorAll("[data-gas-inline]").forEach((div) => {
+      const span = document.createElement("span");
+      span.append(...div.childNodes);
+      div.replaceWith(span);
+    });
     // Entity names in the answer are clickable chips (span role=button); keep
     // their text before the UI-button cleanup removes every role=button.
     clone.querySelectorAll('span[role="button"]').forEach((chip) => {

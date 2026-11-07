@@ -1,149 +1,42 @@
-# google-ai-scraper
+# google-ai-mode-mcp (server package)
 
-MCP server for scraping Google AI Overviews via a Chrome extension relay. No API keys needed. It uses your own browser session and a shared local FastAPI backend.
+The MCP server and the local relay of [Google AI Mode MCP](https://github.com/timoncool/google-ai-mode-mcp). Installation, tools and how it works are in the [main README](https://github.com/timoncool/google-ai-mode-mcp#readme); this page is for running the package from source.
 
-## How it works
-
-```
-MCP Client (Claude Code, Cursor, etc.)
-    ↕ stdio or SSE
-MCP Server (this package)
-    ↕ HTTP
-Shared FastAPI Backend (:15551)
-    ↕ polling
-Chrome Extension
-    → opens background tab on google.com
-    → scrapes AI Overview → Markdown
-    → posts result back
-```
-
-In default stdio mode, each MCP client process auto-reuses or auto-starts the shared backend on `127.0.0.1:15551`.
-
-## Install
+## Run
 
 ```bash
-# Via uvx (recommended)
-uvx google-ai-scraper
-
-# Or pip
-pip install google-ai-scraper
+uvx --from git+https://github.com/timoncool/google-ai-mode-mcp#subdirectory=server google-ai-mode-mcp
 ```
 
-### Prerequisites
-
-1. **Chrome** with the [Google AI Overview Scraper extension](https://chromewebstore.google.com/detail/google-ai-overview-scrape/oidaeopefkgfpeigcjapebhppnbcocpc?authuser=1&hl=en) installed
-2. **Python 3.10+**
-3. Extension options pointed at `http://localhost:15551`
-
-## MCP Client Configuration
-
-### Claude Code
-
-```json
-{
-  "mcpServers": {
-    "google-ai-scraper": {
-      "command": "uvx",
-      "args": ["google-ai-scraper"]
-    }
-  }
-}
-```
-
-### Claude Desktop
-
-```json
-{
-  "mcpServers": {
-    "google-ai-scraper": {
-      "command": "uvx",
-      "args": ["google-ai-scraper"]
-    }
-  }
-}
-```
-
-### Cursor
-
-```json
-{
-  "mcpServers": {
-    "google-ai-scraper": {
-      "command": "uvx",
-      "args": ["google-ai-scraper"]
-    }
-  }
-}
-```
-
-### Local Source Checkout
-
-```json
-{
-  "mcpServers": {
-    "google-ai-scraper": {
-      "command": "uv",
-      "args": [
-        "run",
-        "--directory",
-        "/absolute/path/to/server",
-        "google-ai-scraper"
-      ]
-    }
-  }
-}
-```
-
-## MCP Tools
-
-| Tool | Params | Description |
-|------|--------|-------------|
-| `search` | `query` | Search Google AI Overview. Returns markdown + citations + thread_id |
-| `follow_up` | `query`, `thread_id` | Continue a conversation in an existing thread |
-| `health` | — | Check server + extension connectivity |
-
-## CLI Options
-
-```
-google-ai-scraper [--sse] [--no-server] [--backend] [--port PORT]
-```
-
-| Flag | Default | Description |
-|------|---------|-------------|
-| `--sse` | off | Run the MCP server with SSE transport instead of stdio |
-| `--no-server` | off | Do not auto-start or reuse the shared FastAPI backend |
-| `--backend` | off | Run only the shared FastAPI backend |
-| `--port` | 15551 | FastAPI backend port |
-
-## Environment Variables
-
-| Variable | Default | Description |
-|----------|---------|-------------|
-| `GOOGLE_AI_SCRAPER_URL` | `http://127.0.0.1:15551` | FastAPI backend URL |
-
-## Advanced Modes
-
-### Explicit Shared Backend
+From a checkout:
 
 ```bash
-uv run google-ai-scraper --backend --port 15551
+uv run --directory server google-ai-mode-mcp
 ```
 
-### SSE Server
+The process speaks MCP over stdio. On start it reuses the relay on `127.0.0.1:15551`, or starts it in the background if none is running, so several MCP clients share one relay and one browser extension.
 
-```bash
-uv run google-ai-scraper --sse --no-server
-```
+## Options
 
-### Shared Backend + SSE Helper Script
+| Flag | What it does |
+|---|---|
+| `--extension` | Copy the bundled browser extension to a fixed folder and print how to load it |
+| `--backend` | Run only the relay (FastAPI) |
+| `--no-server` | Do not start or reuse a relay; talk to the one at `GOOGLE_AI_SCRAPER_URL` |
+| `--sse` | MCP over SSE instead of stdio |
+| `--port N` | Relay port, 15551 by default |
 
-```bash
-cd server
-./start-services.sh
-```
+| Variable | Default | What it does |
+|---|---|---|
+| `GOOGLE_AI_SCRAPER_URL` | `http://127.0.0.1:15551` | Relay address |
+| `GOOGLE_AI_SCRAPER_CLOSE_AFTER_SEARCH` | `1` | Close the search page right after the answer; `0` keeps it for follow-ups |
 
-This starts the shared backend on `:15551` and the SSE endpoint on `:8001`.
+## Relay HTTP API
 
-## License
-
-MIT
+| Endpoint | Purpose |
+|---|---|
+| `GET /ask?q=…&thread_id=…&close_thread=…&mode=…&hl=…&gl=…&authuser=…` | Ask a question or a follow-up; returns `markdown`, `citations`, `thread_id` |
+| `GET /generate_image?prompt=…` | Generate an image in AI Mode |
+| `DELETE /thread/{thread_id}` | Close a conversation |
+| `GET /health`, `GET /version` | Relay and extension status |
+| `GET /pending?wait=20`, `POST /result/{id}`, `POST /image_result/{id}` | Used by the extension |

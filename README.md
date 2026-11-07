@@ -86,7 +86,15 @@ To update, run the command from step 1 again and press the reload arrow on the e
    - zip the contents of `firefox-extension/`;
    - install the zip from `about:addons` → gear menu → **Install Add-on From File**.
 
-**3. Skill (optional)** — copy [`skills/google-ai-mode`](skills/google-ai-mode/SKILL.md) to `~/.claude/skills/` so Claude knows when to search and how to ask.
+**3. Skill (recommended)** — copy [`skills/google-ai-mode`](skills/google-ai-mode/SKILL.md) to `~/.claude/skills/` so Claude knows when to search and how to ask. Measured on the same 25 questions ([before/after](benchmarks/2026-11-07-skill/README.md)):
+
+| | Without the skill | With the skill |
+|---|---|---|
+| Official or primary source cited | 13/24 | **22/24** |
+| Answers without any source | 2 | **0** |
+| Closing "Would you like…" offers | 23 | **0** |
+| Median answer length | 1,085 chars | **532 chars** |
+| Median time | 3.0 s | 3.2 s |
 
 ## Tools
 

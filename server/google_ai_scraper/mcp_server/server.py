@@ -29,7 +29,7 @@ HEALTHCHECK_TIMEOUT = 1.5
 AUTO_MANAGE_SERVER = False
 MANAGED_BACKEND_PORT: int | None = None
 
-mcp = FastMCP("google-ai-scraper", port=8001)
+mcp = FastMCP("google-ai-mode", port=8001)
 
 
 def _server_url_for_port(port: int) -> str:

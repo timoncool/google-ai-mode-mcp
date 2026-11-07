@@ -1,12 +1,15 @@
 [project]
-name = "google-ai-scraper"
-version = "0.2.16"
-description = "MCP server for scraping Google AI Overviews via a Chrome extension relay"
+name = "google-ai-mode-mcp"
+version = "0.3.0"
+description = "Google AI Mode as an MCP server: AI answers with citations from your own browser, no API keys"
 requires-python = ">=3.10"
 license = "MIT"
 readme = "README.md"
-authors = [{ name = "Bala Kumar", email = "mail@balakumar.dev" }]
-keywords = ["mcp", "google", "ai-overview", "scraper", "chrome-extension"]
+authors = [
+    { name = "Nerual Dreming (timoncool)" },
+    { name = "Bala Kumar", email = "mail@balakumar.dev" },
+]
+keywords = ["mcp", "google", "ai-mode", "ai-overview", "search", "chrome-extension", "claude"]
 classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
@@ -26,18 +29,23 @@ dependencies = [
 ]
 
 [project.scripts]
+google-ai-mode-mcp = "google_ai_scraper.mcp_server.server:main"
 google-ai-scraper = "google_ai_scraper.mcp_server.server:main"
 
 [project.urls]
-Homepage = "https://github.com/balakumardev/google-ai-scraper"
-Repository = "https://github.com/balakumardev/google-ai-scraper"
-Issues = "https://github.com/balakumardev/google-ai-scraper/issues"
+Homepage = "https://github.com/timoncool/google-ai-mode-mcp"
+Repository = "https://github.com/timoncool/google-ai-mode-mcp"
+Issues = "https://github.com/timoncool/google-ai-mode-mcp/issues"
+Upstream = "https://github.com/balakumardev/google-ai-scraper"
 
 [tool.uv]
 package = true
 
 [tool.hatch.build.targets.wheel]
 packages = ["google_ai_scraper"]
+
+[tool.hatch.build.targets.wheel.force-include]
+"../extension" = "google_ai_scraper/extension"
 
 [build-system]
 requires = ["hatchling"]

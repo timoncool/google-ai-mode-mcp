@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const searchWindowMode = document.getElementById("searchWindowMode");
   const stored = await chrome.storage.sync.get({
     serverUrl: DEFAULT_URL,
-    searchWindowMode: "current",
+    searchWindowMode: "offscreen",
   });
   input.value = stored.serverUrl;
   searchWindowMode.value = stored.searchWindowMode;

@@ -20,7 +20,8 @@ const RESUME_HASH = "#_resume";
 const RESUME_READY_TIMEOUT = 20000;
 
 let serverUrl = DEFAULT_SERVER;
-let searchWindowMode = "current"; // "current" | "offscreen"
+const DEFAULT_SEARCH_WINDOW_MODE = "offscreen"; // "current" | "offscreen"
+let searchWindowMode = DEFAULT_SEARCH_WINDOW_MODE;
 let googleAuthUser = 0;
 let googleAccounts = [0]; // available authuser indices for quota rotation
 let googleAccountProfiles = [];
@@ -527,7 +528,7 @@ async function loadStoredState() {
   const [syncData, localData] = await Promise.all([
     chrome.storage.sync.get({
       serverUrl: DEFAULT_SERVER,
-      searchWindowMode: "current",
+      searchWindowMode: DEFAULT_SEARCH_WINDOW_MODE,
       googleAuthUser: 0,
       googleAccounts: [0],
     }),
@@ -554,7 +555,7 @@ chrome.storage.onChanged.addListener((changes, area) => {
       serverUrl = changes.serverUrl.newValue || DEFAULT_SERVER;
     }
     if (changes.searchWindowMode) {
-      searchWindowMode = changes.searchWindowMode.newValue || "current";
+      searchWindowMode = changes.searchWindowMode.newValue || DEFAULT_SEARCH_WINDOW_MODE;
     }
     if (changes.googleAuthUser != null || changes.googleAccounts) {
       setInMemoryAccountState(

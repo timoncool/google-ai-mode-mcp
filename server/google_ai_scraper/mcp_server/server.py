@@ -18,7 +18,7 @@ from google_ai_scraper import __version__
 DEFAULT_HOST = "127.0.0.1"
 DEFAULT_PORT = 15551
 SERVER_URL = os.environ.get("GOOGLE_AI_SCRAPER_URL", f"http://{DEFAULT_HOST}:{DEFAULT_PORT}")
-CLOSE_AFTER_SEARCH = os.environ.get("GOOGLE_AI_SCRAPER_CLOSE_AFTER_SEARCH", "").lower() in ("1", "true", "yes")
+CLOSE_AFTER_SEARCH = os.environ.get("GOOGLE_AI_SCRAPER_CLOSE_AFTER_SEARCH", "1").lower() not in ("0", "false", "no")
 SEARCH_MANY_MAX = 10
 SEARCH_MANY_CONCURRENCY = 5
 REQUEST_TIMEOUT = 75.0  # seconds — slightly above FastAPI query timeout
@@ -51,6 +51,38 @@ def _state_dir() -> Path:
     path = base / "google-ai-scraper"
     path.mkdir(parents=True, exist_ok=True)
     return path
+
+
+def _extension_home() -> Path:
+    if sys.platform == "darwin":
+        base = Path.home() / "Library" / "Application Support"
+    elif os.name == "nt":
+        base = Path(os.environ.get("LOCALAPPDATA", Path.home() / "AppData" / "Local"))
+    else:
+        base = Path(os.environ.get("XDG_DATA_HOME", Path.home() / ".local" / "share"))
+    return base / "google-ai-mode-mcp" / "extension"
+
+
+def _bundled_extension() -> Path:
+    # Inside a built wheel the extension ships next to the package; in a
+    # source checkout it is the repository's extension/ folder.
+    package_dir = Path(__file__).resolve().parent.parent
+    for candidate in (package_dir / "extension", package_dir.parents[1] / "extension"):
+        if (candidate / "manifest.json").is_file():
+            return candidate
+    raise SystemExit("[ERROR] The browser extension is missing from this installation")
+
+
+def _install_extension() -> None:
+    import shutil
+
+    target = _extension_home()
+    if target.exists():
+        shutil.rmtree(target)
+    shutil.copytree(_bundled_extension(), target)
+    print(f"[OK] Extension files: {target}")
+    print("Chrome: open chrome://extensions, turn on Developer mode, click Load unpacked and pick that folder.")
+    print("Already loaded from there? Click the reload arrow on its card to pick up this version.")
 
 
 def _backend_lock_path(port: int) -> Path:
@@ -160,8 +192,11 @@ def _spawn_backend_process(port: int):
     log_path.parent.mkdir(parents=True, exist_ok=True)
 
     if os.name == "nt":
+        # A venv python.exe is a launcher that starts the real interpreter as a
+        # child; under DETACHED_PROCESS that child opens a console window of its
+        # own, so give the tree a hidden console instead.
         kwargs["creationflags"] = (
-            subprocess.CREATE_NEW_PROCESS_GROUP | subprocess.DETACHED_PROCESS
+            subprocess.CREATE_NEW_PROCESS_GROUP | subprocess.CREATE_NO_WINDOW
         )
     else:
         kwargs["start_new_session"] = True
@@ -472,6 +507,11 @@ async def generate_image(prompt: str, save_path: str | None = None):
 async def health() -> str:
     """Check system status: server, extension connectivity, queue depth."""
     result = await _request("GET", "/health")
+    if result.get("extension_status") == "never_seen":
+        result["hint"] = (
+            "The browser extension has never connected. Install it: run this MCP server's command with "
+            f"`--extension`, then load {_extension_home()} in chrome://extensions with Load unpacked."
+        )
     return _dumps(result)
 
 
@@ -495,9 +535,14 @@ def main():
     parser.add_argument("--no-server", action="store_true", help="Don't auto-start or reuse the shared FastAPI backend")
     parser.add_argument("--backend", action="store_true", help="Run only the shared FastAPI backend process")
     parser.add_argument("--port", type=int, default=DEFAULT_PORT, help=f"FastAPI server port (default: {DEFAULT_PORT})")
+    parser.add_argument("--extension", action="store_true", help="Copy the browser extension to a stable folder and print how to load it")
     args = parser.parse_args()
 
     global AUTO_MANAGE_SERVER, MANAGED_BACKEND_PORT, SERVER_URL
+
+    if args.extension:
+        _install_extension()
+        return
 
     if args.backend:
         _run_backend(args.port)

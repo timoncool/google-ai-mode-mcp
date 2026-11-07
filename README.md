@@ -1,264 +1,132 @@
-# Google AI Overview Scraper
+<div align="center">
 
-Scrapes Google AI Overviews via a browser extension relay and returns them as clean Markdown with citations. Ships a Chrome extension, a Firefox add-on, an HTTP API and an MCP server for AI agents such as Claude Code, Claude Desktop, and Cursor.
+<img src="docs/icon.png" width="128" alt="Google AI Mode MCP icon" />
 
-[![Chrome Web Store](https://img.shields.io/badge/Chrome%20Web%20Store-install-4285F4?logo=googlechrome&logoColor=white)](https://chromewebstore.google.com/detail/google-ai-overview-scrape/oidaeopefkgfpeigcjapebhppnbcocpc)
-[![Firefox Add-ons](https://img.shields.io/badge/Firefox%20Add--ons-install-FF7139?logo=firefoxbrowser&logoColor=white)](https://addons.mozilla.org/firefox/addon/google-ai-overview-scraper/)
-[![PyPI](https://img.shields.io/pypi/v/google-ai-scraper?label=PyPI)](https://pypi.org/project/google-ai-scraper/)
-[![npm](https://img.shields.io/npm/v/google-ai-scraper?label=npm)](https://www.npmjs.com/package/google-ai-scraper)
+# Google AI Mode MCP
 
-![Google AI Overviews as clean Markdown](store-assets/dist/screenshot-1.png)
+**Google AI Mode for Claude and any MCP client — cited AI answers from your own browser, in about three seconds, with no tabs, no API keys and no quotas of its own.**
 
-No browser focus stealing. Queries run in background tabs.
+[![Stars](https://img.shields.io/github/stars/timoncool/google-ai-mode-mcp?style=flat-square)](https://github.com/timoncool/google-ai-mode-mcp/stargazers)
+[![License](https://img.shields.io/github/license/timoncool/google-ai-mode-mcp?style=flat-square)](LICENSE)
+[![Last Commit](https://img.shields.io/github/last-commit/timoncool/google-ai-mode-mcp?style=flat-square)](https://github.com/timoncool/google-ai-mode-mcp/commits/main)
+[![Issues](https://img.shields.io/github/issues/timoncool/google-ai-mode-mcp?style=flat-square)](https://github.com/timoncool/google-ai-mode-mcp/issues)
 
-```
-MCP Client / HTTP Client
-        ↕
-   MCP Server (stdio or SSE)
-        ↕ httpx
-   Shared FastAPI Backend (:15551)
-        ↕ polling
- Chrome Extension / Firefox Add-on
-        → background tab → scrape → result
-```
+**[English](README.md)** · **[Русский](README_RU.md)**
 
-## Prerequisites
+</div>
 
-- Python 3.13+
-- [uv](https://docs.astral.sh/uv/getting-started/installation/)
-- Chrome/Chromium or Firefox
+Google AI Mode reads dozens of pages and writes one answer with sources. This MCP server hands that answer to your agent: Claude asks a question, a small browser extension asks Google in your own Chrome, signed in as you, and the answer comes back as clean Markdown with citations. One call replaces reading five to ten pages, at a fraction of the tokens.
 
-## Quick Install
+## Features
+
+- **Fast** — about 3 s per answer on average in our tests (6.2 s → 3.2 s against the extension this grew from): the answer is taken the moment Google marks it finished, and the extension gets each query instantly over a long-poll.
+- **Invisible** — in Chrome every search runs in a hidden offscreen frame: no tab, no window, nothing flashes on screen.
+- **Follow-ups** — keep asking in the same Google conversation; it is reopened from its link even after the frame is gone, for 30 minutes.
+- **Parallel** — `search_many` sends up to 10 questions at once, about as fast as one.
+- **Local results** — `gl="us"` (or any country) for prices, availability and local news.
+- **Any UI language** — works with Google in English, Russian or any other language.
+- **Clean answers** — no interface leftovers in the text, non-Latin text stays as text (no `\uXXXX` token bloat).
+- **Clear errors** — a CAPTCHA, a sleeping extension or a used-up quota come back with a hint for the agent.
+- **Your account, your machine** — no API keys, no paid proxy, nothing leaves your computer except the search itself.
+
+## Install
+
+You need [uv](https://docs.astral.sh/uv/) and Chrome (Firefox works too, with background tabs instead of hidden frames).
+
+**1. MCP server — one command:**
 
 ```bash
-uvx google-ai-scraper
+claude mcp add google-ai-mode -- uvx --from git+https://github.com/timoncool/google-ai-mode-mcp#subdirectory=server google-ai-mode-mcp
 ```
 
-Install the extension for your browser:
-
-- Chrome: [Chrome Web Store](https://chromewebstore.google.com/detail/google-ai-overview-scrape/oidaeopefkgfpeigcjapebhppnbcocpc)
-- Firefox: [Firefox Add-ons](https://addons.mozilla.org/firefox/addon/google-ai-overview-scraper/)
-
-To develop locally, load `firefox-extension/manifest.json` via `about:debugging#/runtime/this-firefox`.
-
-In either browser, open the extension/add-on settings and set the server URL to `http://localhost:15551`.
-
-For MCP clients, the simplest config is:
+Claude Desktop, Cursor and other clients — the same command in their config:
 
 ```json
 {
   "mcpServers": {
-    "google-ai-scraper": {
+    "google-ai-mode": {
       "command": "uvx",
-      "args": ["google-ai-scraper"]
+      "args": ["--from", "git+https://github.com/timoncool/google-ai-mode-mcp#subdirectory=server", "google-ai-mode-mcp"]
     }
   }
 }
 ```
 
-Prefer npm? `npx -y google-ai-scraper` runs the same server (it launches the matching PyPI release through `uvx` or `pipx`, so uv is still required).
-
-Each MCP client process auto-reuses or auto-starts the shared backend on `127.0.0.1:15551`, so multiple Claude Code windows can use the same config without manual SSE setup.
-
-## Local Development Setup
-
-### 1. Install dependencies
+**2. Browser extension** — it ships inside the package:
 
 ```bash
-cd server
-uv sync
+uvx --from git+https://github.com/timoncool/google-ai-mode-mcp#subdirectory=server google-ai-mode-mcp --extension
 ```
 
-### 2. Install the browser extension/add-on
+The command copies the extension to a fixed folder and prints its path. Open `chrome://extensions`, turn on **Developer mode**, click **Load unpacked** and pick that folder. To update later, run the command again and press the reload arrow on the extension's card.
 
-Chrome:
+**3. Skill (optional)** — copy [`skills/google-ai-mode`](skills/google-ai-mode/SKILL.md) to `~/.claude/skills/` so Claude knows when to search and how to ask.
 
-https://chromewebstore.google.com/detail/google-ai-overview-scrape/oidaeopefkgfpeigcjapebhppnbcocpc?authuser=1&hl=en
+## Tools
 
-Firefox:
+| Tool | What it does |
+|---|---|
+| `search(query, mode, gl, hl)` | One question → answer, `citations`, `thread_id`. `mode="fast"` for quick facts, `gl` for a country |
+| `search_many(queries)` | Up to 10 independent questions in parallel, results in the same order |
+| `follow_up(query, thread_id)` | Next question in the same conversation |
+| `generate_image(prompt, save_path)` | Image from Google's generator in AI Mode |
+| `health()` | Server and extension status, with a hint if something is off |
 
-1. Open `about:debugging#/runtime/this-firefox`
-2. Click **Load Temporary Add-on**
-3. Select `firefox-extension/manifest.json`
+Ask in the language you want the answer in: the answer follows the language of the question (`hl` only switches Google's interface).
 
-Then open the extension/add-on settings and set the server URL to `http://localhost:15551`.
+## How it works
 
-### 3. Start a local backend for direct HTTP testing
-
-```bash
-cd server
-uv run google-ai-scraper --backend --port 15551
+```
+Claude ──MCP──▶ google-ai-mode-mcp ──HTTP──▶ local relay :15551 ◀──long-poll── browser extension
+                                                                                  │
+                                         hidden offscreen frame: google.com/search?udm=50
 ```
 
-If you prefer raw FastAPI during development, this also works:
+- The MCP server starts a small local relay. The extension holds an open request to it and receives each query the moment it arrives.
+- In Chrome the query opens in an iframe of an offscreen document. Google forbids framing its pages, so a session rule lifts the framing headers only for requests that belong to no tab; your normal browsing is untouched.
+- The answer is read when Google renders its rating buttons under it, hidden interface text is dropped, and the conversation link is kept for follow-ups.
 
-```bash
-cd server
-uv run uvicorn google_ai_scraper.app:app --port 15551
-```
+Settings (extension options): where searches run — hidden frames (default) or background tabs. Environment: `GOOGLE_AI_SCRAPER_URL` (relay address), `GOOGLE_AI_SCRAPER_CLOSE_AFTER_SEARCH=0` to keep tabs open between follow-ups in tab mode.
 
-### 4. Verify
+**Limits.** This uses Google Search like a person does, through your browser; Google may show a CAPTCHA — open Google once, solve it, and retry. Hidden frames need Chrome (or any Chromium); Firefox uses background tabs.
 
-```bash
-# Check server + extension connectivity
-curl -s http://localhost:15551/health
+Inspired by [balakumardev/google-ai-scraper](https://github.com/balakumardev/google-ai-scraper).
 
-# Run a query
-curl -s "http://localhost:15551/ask?q=what+is+photosynthesis" | python3 -m json.tool
-```
+## Other Projects by [@timoncool](https://github.com/timoncool)
 
-## HTTP API
+| Project | Description |
+|---------|-------------|
+| [telegram-api-mcp](https://github.com/timoncool/telegram-api-mcp) | Full Telegram Bot API as an MCP server |
+| [civitai-mcp-ultimate](https://github.com/timoncool/civitai-mcp-ultimate) | Civitai API as an MCP server — models, images, prompts |
+| [trail-spec](https://github.com/timoncool/trail-spec) | TRAIL — cross-MCP content tracking protocol |
+| [ACE-Step Studio](https://github.com/timoncool/ACE-Step-Studio) | AI music studio — songs, vocals, covers, videos |
+| [VideoSOS](https://github.com/timoncool/videosos) | AI video production in the browser |
+| [Bulka](https://github.com/timoncool/Bulka) | Live-coding music platform |
 
-The FastAPI backend exposes these endpoints directly:
+## Authors
 
-| Endpoint | Method | Description |
-|---|---|---|
-| `/ask?q={query}` | GET | Search. Returns `{query, query_id, thread_id, markdown, citations}` |
-| `/ask?q={query}&thread_id={id}` | GET | Follow-up in an existing thread |
-| `/thread/{thread_id}` | DELETE | Close a thread and its tab |
-| `/health` | GET | Server status, extension connectivity, queue depth |
+- **Nerual Dreming** — [Telegram](https://t.me/nerual_dreming) | [neuro-cartel.com](https://neuro-cartel.com) | [ArtGeneration.me](https://artgeneration.me)
 
-```bash
-# Search
-curl -s "http://localhost:15551/ask?q=what+is+rust+programming" | python3 -m json.tool
+## Support the Author
 
-# Follow-up (use thread_id from previous response)
-curl -s "http://localhost:15551/ask?q=how+does+ownership+work&thread_id=abc123def456" | python3 -m json.tool
+I build open-source software and do AI research. Most of what I create is free and available to everyone. Your donations help me keep creating without worrying about where the next meal comes from =)
 
-# Close thread
-curl -s -X DELETE "http://localhost:15551/thread/abc123def456"
-```
+**[All donation methods](https://github.com/timoncool/ACE-Step-Studio/blob/master/DONATE.md)** | **[dalink.to/nerual_dreming](https://dalink.to/nerual_dreming)** | **[boosty.to/neuro_art](https://boosty.to/neuro_art)**
 
-## MCP Server
+- **BTC:** `1E7dHL22RpyhJGVpcvKdbyZgksSYkYeEBC`
+- **ETH (ERC20):** `0xb5db65adf478983186d4897ba92fe2c25c594a0c`
+- **USDT (TRC20):** `TQST9Lp2TjK6FiVkn4fwfGUee7NmkxEE7C`
 
-The MCP server wraps the HTTP API as 4 tools for AI agents. In default stdio mode, each MCP client process auto-reuses or auto-starts the shared backend on port `15551`.
+## Star History
 
-### MCP Tools
+<a href="https://github.com/timoncool/google-ai-mode-mcp/stargazers">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="docs/stars-dark.svg" />
+   <source media="(prefers-color-scheme: light)" srcset="docs/stars-light.svg" />
+   <img alt="Star History Chart" src="docs/stars-light.svg" />
+ </picture>
+</a>
 
-| Tool | Params | Description |
-|---|---|---|
-| `search` | `query`, `mode`, `hl`, `gl` | Search Google AI Overview. Returns markdown, citations, and a `thread_id` for follow-ups. `gl` localizes results to a country, `hl` sets the Google UI language. |
-| `search_many` | `queries`, `mode`, `hl`, `gl` | Run up to 10 independent searches in parallel, one tab each. |
-| `follow_up` | `query`, `thread_id` | Continue a conversation in an existing thread. |
-| `generate_image` | `prompt`, `save_path` | Generate an image with Google AI and optionally save it to disk. |
-| `health` | — | Check server and extension connectivity. |
+## License
 
-Threads auto-expire after 2 minutes of inactivity (30 minutes with `GOOGLE_AI_SCRAPER_CLOSE_AFTER_SEARCH=1`, where the tab is closed right away and reopened from the conversation URL for a follow-up). Errors with a known cause, such as a Google CAPTCHA, come with a `hint`.
-
-In the extension options (Chrome), *Run searches in → Hidden offscreen frames* loads every search in an iframe of an offscreen document: no tabs or windows appear at all. For these frames only (requests outside any tab), a session `declarativeNetRequest` rule removes Google's `X-Frame-Options` and `Content-Security-Policy` headers so the page may be framed; follow-ups reopen the conversation URL in a new frame. The UI is localized (English, Russian) through `_locales`.
-
-### Option A: Stdio Transport
-
-Recommended for most users. This is the simplest setup and works well even with multiple Claude Code windows.
-
-**Using the published package:**
-
-```json
-{
-  "mcpServers": {
-    "google-ai-scraper": {
-      "command": "uvx",
-      "args": ["google-ai-scraper"]
-    }
-  }
-}
-```
-
-**Using a local checkout from source:**
-
-```json
-{
-  "mcpServers": {
-    "google-ai-scraper": {
-      "command": "uv",
-      "args": [
-        "run",
-        "--directory",
-        "/absolute/path/to/server",
-        "google-ai-scraper"
-      ]
-    }
-  }
-}
-```
-
-Replace `/absolute/path/to/server` with the full path to the `server/` directory.
-
-### Option B: SSE Transport
-
-Still supported for explicit always-on setups. Run the shared backend and the MCP SSE server once, then connect clients by URL.
-
-**Start both services:**
-
-```bash
-cd server
-./start-services.sh
-# FastAPI on :15551, MCP SSE on :8001
-```
-
-**Client configuration:**
-
-```json
-{
-  "mcpServers": {
-    "google-ai-scraper": {
-      "type": "sse",
-      "url": "http://localhost:8001/sse"
-    }
-  }
-}
-```
-
-### Stdio vs SSE
-
-| | Stdio | SSE |
-|---|---|---|
-| MCP process lifecycle | New process per client session | Persistent shared MCP server |
-| FastAPI backend | Auto-started or reused on `:15551` | Usually started explicitly alongside SSE |
-| User setup | Simplest | Best for always-on shared service setups |
-| Recommended for | Most users | Advanced/shared infrastructure |
-
-## LaunchAgent (macOS)
-
-Auto-start the shared backend and SSE server at login with restart on crash. The included plist runs `start-services.sh`.
-
-```bash
-# Edit the plist if your clone path differs from /Users/balakumar/personal/google-ai-scraper
-cp com.google-ai-scraper.plist ~/Library/LaunchAgents/
-
-launchctl load ~/Library/LaunchAgents/com.google-ai-scraper.plist
-```
-
-Verify:
-
-```bash
-curl -s http://localhost:15551/health
-curl -s http://localhost:8001/sse --max-time 2
-```
-
-Logs:
-
-```bash
-tail -f /tmp/google-ai-scraper.log /tmp/google-ai-scraper.err
-```
-
-Stop:
-
-```bash
-launchctl unload ~/Library/LaunchAgents/com.google-ai-scraper.plist
-```
-
-## Configuration
-
-| Environment Variable | Default | Description |
-|---|---|---|
-| `GOOGLE_AI_SCRAPER_URL` | `http://127.0.0.1:15551` | FastAPI backend URL for the MCP process |
-| `GOOGLE_AI_SCRAPER_CLOSE_AFTER_SEARCH` | off | `1` closes the search tab as soon as the answer is returned instead of keeping it for follow-ups for 2 min |
-
-## Changing the FastAPI Port
-
-If you change from port `15551`:
-
-1. Start the backend or MCP process with `--port XXXX`, or set `GOOGLE_AI_SCRAPER_URL`.
-2. Update the extension's options page to the same `http://localhost:XXXX` URL.
-3. `manifest.json` already allows all localhost ports, so no host permission change is needed.
+MIT

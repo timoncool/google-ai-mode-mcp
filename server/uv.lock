@@ -244,8 +244,8 @@ wheels = [
 ]
 
 [[package]]
-name = "google-ai-scraper"
-version = "0.2.16"
+name = "google-ai-mode-mcp"
+version = "0.3.0"
 source = { editable = "." }
 dependencies = [
     { name = "fastapi" },

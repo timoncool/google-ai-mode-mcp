@@ -1,0 +1,127 @@
+{
+ "q01": {
+  "X84": "google_ai_mode",
+  "Z62": "websearch",
+  "Z95": "exa"
+ },
+ "q02": {
+  "I10": "google_ai_mode",
+  "C43": "websearch",
+  "X14": "exa"
+ },
+ "q03": {
+  "K74": "google_ai_mode",
+  "A22": "websearch",
+  "B93": "exa"
+ },
+ "q04": {
+  "K19": "google_ai_mode",
+  "V59": "websearch",
+  "T14": "exa"
+ },
+ "q05": {
+  "G44": "google_ai_mode",
+  "D37": "websearch",
+  "X48": "exa"
+ },
+ "q06": {
+  "M44": "google_ai_mode",
+  "M20": "websearch",
+  "G57": "exa"
+ },
+ "q07": {
+  "W98": "google_ai_mode",
+  "X38": "websearch",
+  "C61": "exa"
+ },
+ "q08": {
+  "P96": "google_ai_mode",
+  "I78": "websearch",
+  "E35": "exa"
+ },
+ "q09": {
+  "F78": "google_ai_mode",
+  "Q82": "websearch",
+  "C94": "exa"
+ },
+ "q10": {
+  "K41": "google_ai_mode",
+  "M92": "websearch",
+  "X44": "exa"
+ },
+ "q11": {
+  "M58": "google_ai_mode",
+  "R84": "websearch",
+  "A76": "exa"
+ },
+ "q12": {
+  "U86": "google_ai_mode",
+  "N76": "websearch",
+  "X59": "exa"
+ },
+ "q13": {
+  "P45": "google_ai_mode",
+  "L93": "websearch",
+  "I70": "exa"
+ },
+ "q14": {
+  "H90": "google_ai_mode",
+  "T18": "websearch",
+  "S61": "exa"
+ },
+ "q15": {
+  "O39": "google_ai_mode",
+  "R86": "websearch",
+  "L94": "exa"
+ },
+ "q16": {
+  "G67": "google_ai_mode",
+  "C39": "websearch",
+  "M47": "exa"
+ },
+ "q17": {
+  "X78": "google_ai_mode",
+  "A33": "websearch",
+  "A82": "exa"
+ },
+ "q18": {
+  "C15": "google_ai_mode",
+  "V44": "websearch",
+  "I23": "exa"
+ },
+ "q19": {
+  "I63": "google_ai_mode",
+  "A96": "websearch",
+  "V65": "exa"
+ },
+ "q20": {
+  "X20": "google_ai_mode",
+  "L91": "websearch",
+  "R23": "exa"
+ },
+ "q21": {
+  "V88": "google_ai_mode",
+  "B95": "websearch",
+  "T99": "exa"
+ },
+ "q22": {
+  "U93": "google_ai_mode",
+  "M62": "websearch",
+  "O65": "exa"
+ },
+ "q23": {
+  "O43": "google_ai_mode",
+  "A64": "websearch",
+  "I49": "exa"
+ },
+ "q24": {
+  "R28": "google_ai_mode",
+  "U83": "websearch",
+  "E80": "exa"
+ },
+ "q25": {
+  "G83": "google_ai_mode",
+  "Z42": "websearch",
+  "A75": "exa"
+ }
+}

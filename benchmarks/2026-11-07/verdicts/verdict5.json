@@ -1,0 +1,47 @@
+{"batch": "batch5", "questions": [
+  {"qid": "q21",
+   "scores": {
+     "B95": {"correct": 1, "complete": 2, "sources": 1, "focus": 2, "self_sufficient": true, "issues": "Gives Bush only from own knowledge and explicitly says no source confirms it; source list mixes NASA pages with junk (foursixty, shortened bbc link)."},
+     "V88": {"correct": 2, "complete": 2, "sources": 1, "focus": 2, "self_sufficient": true, "issues": "Single NASA source supports only the launch date, not Bush's term; ends with a follow-up offer."},
+     "T99": {"correct": 1, "complete": 1, "sources": 2, "focus": 1, "self_sufficient": false, "issues": "Launch date well sourced, but the president is never tied to April 1990 (Bush only in a 1992 context) and Clinton/Reagan pages add confusing noise."}
+   },
+   "ranking": ["V88", "B95", "T99"],
+   "best": "V88",
+   "rationale": "V88 states Bush directly with the date and STS-31 from NASA and his term, so the answer is immediate. B95 has the same content but hedges it as unsourced own knowledge. T99 only supplies the launch date; the president must be inferred amid Clinton and Reagan noise."},
+  {"qid": "q22",
+   "scores": {
+     "O65": {"correct": 2, "complete": 2, "sources": 2, "focus": 1, "self_sufficient": true, "issues": "Raw extracts are all on topic but highly repetitive (same bio several times, GitHub profile stats), no direct answer sentence."},
+     "U93": {"correct": 2, "complete": 2, "sources": 1, "focus": 2, "self_sufficient": true, "issues": "Sources are mostly secondary (skillbox, progkids, habr, instagram) rather than authoritative; trailing follow-up offer."},
+     "M62": {"correct": 2, "complete": 2, "sources": 2, "focus": 2, "self_sufficient": true, "issues": "Wikipedia supports it, but the source list is padded with mirrors, podcast aggregators and a nitter link."}
+   },
+   "ranking": ["M62", "U93", "O65"],
+   "best": "M62",
+   "rationale": "M62 answers C# directly, dates the Microsoft move (1996) and C# lead role (2000), mentions TypeScript, and leads with the reference Wikipedia page. U93 is equally correct but leans on weaker Russian blogs. O65 has the best primary sources but makes the assistant read through repetitive raw extracts."},
+  {"qid": "q23",
+   "scores": {
+     "I49": {"correct": 2, "complete": 2, "sources": 2, "focus": 1, "self_sufficient": true, "issues": "Every extract confirms Oranienbaum (Lomonosov), but long biography passages and ballet trivia add a lot of reading."},
+     "A64": {"correct": 2, "complete": 2, "sources": 1, "focus": 2, "self_sufficient": true, "issues": "Sources are weak encyclopedic clones and aggregators (cyclowiki, znanierussia, 24smi) rather than authoritative references."},
+     "O43": {"correct": 2, "complete": 2, "sources": 2, "focus": 2, "self_sufficient": true, "issues": "Adds unrequested birthplaces of Roerich and Nijinsky and a follow-up offer."}
+   },
+   "ranking": ["O43", "I49", "A64"],
+   "best": "O43",
+   "rationale": "O43 states Stravinsky, Oranienbaum and its current name Lomonosov in one line backed by Russian Wikipedia. I49 has strong sources (Wikipedia, music encyclopedia) but buries the answer in long extracts. A64 is concise and correct but cites weak aggregator sites."},
+  {"qid": "q24",
+   "scores": {
+     "E80": {"correct": 2, "complete": 2, "sources": 2, "focus": 1, "self_sufficient": true, "issues": "Santiago is stated repeatedly by Britannica and BBC, but the regional capital Copiapó and a long Atacama glossary page add distracting noise."},
+     "U83": {"correct": 2, "complete": 2, "sources": 1, "focus": 2, "self_sufficient": true, "issues": "Sources are mostly Wikipedia mirrors, travel blogs and odd hosts (ipfs, pages.dev) rather than authoritative pages."},
+     "R28": {"correct": 2, "complete": 2, "sources": 0, "focus": 2, "self_sufficient": true, "issues": "No sources at all."}
+   },
+   "ranking": ["U83", "E80", "R28"],
+   "best": "U83",
+   "rationale": "U83 gives Santiago directly and explains that the desert lies almost entirely in northern Chile, with sources attached. E80 has stronger sources but forces the assistant past Copiapó (regional capital) and irrelevant glossary text. R28 is correct and complete but completely unsourced."},
+  {"qid": "q25",
+   "scores": {
+     "A75": {"correct": 1, "complete": 1, "sources": 2, "focus": 1, "self_sufficient": true, "issues": "Both dates are present in authoritative extracts (Zarya 20.11.1998, Apollo 11 20.07.1969) but the 29-year difference is never computed; much off-topic ISS history."},
+     "Z42": {"correct": 1, "complete": 2, "sources": 1, "focus": 2, "self_sufficient": true, "issues": "Says the Zarya launch date comes from own knowledge, unconfirmed by search; sources are mostly ixbt comment threads."},
+     "G83": {"correct": 2, "complete": 2, "sources": 2, "focus": 2, "self_sufficient": true, "issues": "Trailing follow-up offer only."}
+   },
+   "ranking": ["G83", "A75", "Z42"],
+   "best": "G83",
+   "rationale": "G83 states 29 full years (29 years 4 months) with both dates and names Zarya, citing the two Wikipedia articles. A75 contains both dates from authoritative pages but leaves the subtraction to the assistant amid noise. Z42 gets the number right but admits the key date is unsourced and cites comment threads."}
+]}

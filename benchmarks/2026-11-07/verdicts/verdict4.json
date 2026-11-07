@@ -1,0 +1,47 @@
+{"batch": "batch4", "questions": [
+  {"qid": "q16",
+   "scores": {
+     "C39": {"correct": 2, "complete": 2, "sources": 1, "focus": 2, "self_sufficient": true, "issues": "Sources are secondary tutorial sites only; duplicated 'Sources' line and an odd 'not reproduced text' remark."},
+     "G67": {"correct": 2, "complete": 2, "sources": 2, "focus": 2, "self_sufficient": true, "issues": "Closing offer to help is filler; sources mix a GitHub discussion and blogs with GitLab docs."},
+     "M47": {"correct": 2, "complete": 2, "sources": 2, "focus": 1, "self_sufficient": true, "issues": "Very long raw extracts with off-topic parts (Visual Studio UI, stash, rebase) and a Stack Overflow answer recommending mixed reset, which leaves changes unstaged."}
+   },
+   "ranking": ["G67", "C39", "M47"],
+   "best": "G67",
+   "rationale": "G67 gives git reset --soft HEAD~1 and says explicitly that the index and working tree are unchanged. It adds the pushed-commit caveat and cites GitLab docs. C39 is equally correct but cites only secondary sites, and M47 has the answer and good sources buried in long extracts."},
+  {"qid": "q17",
+   "scores": {
+     "A33": {"correct": 2, "complete": 2, "sources": 1, "focus": 2, "self_sufficient": true, "issues": "One cited source is a dubious trending-stories page; some commands are not formatted as code."},
+     "X78": {"correct": 2, "complete": 2, "sources": 1, "focus": 1, "self_sufficient": true, "issues": "Repeated UI leftover 'Используйте код с осторожностью' and a closing offer; sources are secondary Russian blogs."},
+     "A82": {"correct": 2, "complete": 2, "sources": 2, "focus": 1, "self_sufficient": true, "issues": "Long raw extracts; the main Linuxize example uses port 80; includes a portrm product pitch and a generic netstat guide."}
+   },
+   "ranking": ["A33", "X78", "A82"],
+   "best": "A33",
+   "rationale": "A33 gives sudo ss -tlnp | grep :8080 with the lsof, fuser and netstat alternatives and the sudo caveat, compactly. X78 has the same content plus flag explanations but carries UI leftovers. A82 has strong sources but makes the assistant dig through long pages, partly about port 80."},
+  {"qid": "q18",
+   "scores": {
+     "C15": {"correct": 2, "complete": 2, "sources": 1, "focus": 1, "self_sufficient": true, "issues": "UI leftover 'Используйте код с осторожностью' in an English answer, a closing offer, and weak sources (Medium, YouTube, GeeksforGeeks)."},
+     "V44": {"correct": 2, "complete": 2, "sources": 1, "focus": 2, "self_sufficient": true, "issues": "All seven sources are language copies of one DataCamp tutorial."},
+     "I23": {"correct": 2, "complete": 2, "sources": 2, "focus": 1, "self_sufficient": true, "issues": "Raw extracts include long off-topic parts on multiprocessing, the io module internals and pickle generators."}
+   },
+   "ranking": ["I23", "V44", "C15"],
+   "best": "I23",
+   "rationale": "I23 opens with the accepted Stack Overflow answer showing with open(...) and for line in f. It also includes the official Python io docs, which confirm that iterating a file object avoids readlines. V44 is concise and correct but rests on a single DataCamp page; C15 is correct but has UI leftovers and weak sources."},
+  {"qid": "q19",
+   "scores": {
+     "I63": {"correct": 2, "complete": 2, "sources": 1, "focus": 1, "self_sufficient": true, "issues": "Repeated UI leftover 'Используйте код с осторожностью' and a closing question; one source is just the ffmpeg.org homepage."},
+     "A96": {"correct": 2, "complete": 2, "sources": 1, "focus": 2, "self_sufficient": true, "issues": "Mentions a source's scale=360 example, which is briefly confusing; sources are tutorial blogs."},
+     "V65": {"correct": 2, "complete": 2, "sources": 1, "focus": 1, "self_sufficient": true, "issues": "Exact command is at the top, but most of the output is unrelated material such as a long TikTok/dev.to article and a video-render README."}
+   },
+   "ranking": ["A96", "I63", "V65"],
+   "best": "A96",
+   "rationale": "A96 gives the exact one-pass fps=10,scale=480:-1:flags=lanczos palette command and the two-pass palettegen/paletteuse variant, cleanly. I63 is equally correct but lacks the separate two-pass form and has UI leftovers. V65 has the right commands in its first extract but is padded with much irrelevant text."},
+  {"qid": "q20",
+   "scores": {
+     "X20": {"correct": 2, "complete": 2, "sources": 1, "focus": 1, "self_sufficient": true, "issues": "UI leftover 'Используйте код с осторожностью' and a closing offer; weak sources including an Instagram reel and a YouTube video."},
+     "R23": {"correct": 2, "complete": 2, "sources": 2, "focus": 1, "self_sufficient": true, "issues": "Long raw extracts with dated or tangential parts (the 2005 blog, an unrelated modification-column example)."},
+     "L91": {"correct": 2, "complete": 2, "sources": 1, "focus": 2, "self_sufficient": true, "issues": "Gives the ctid approach without code; the SQL is inline and unformatted; one source is an odd proxy URL."}
+   },
+   "ranking": ["R23", "X20", "L91"],
+   "best": "R23",
+   "rationale": "R23 opens with the PostgreSQL wiki query: row_number() OVER (PARTITION BY ... ORDER BY id) with rnum > 1, keeping the lowest id. It follows with Neon's tutorial and ctid variants, so the answer is authoritative and immediate. X20 has full code for both the id and ctid cases but cites weak sources and carries UI leftovers; L91 is concise but gives no ctid code and cites a suspicious proxy."}
+]}

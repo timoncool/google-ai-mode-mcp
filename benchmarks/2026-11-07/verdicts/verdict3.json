@@ -1,0 +1,47 @@
+{"batch": "batch3", "questions": [
+  {"qid": "q11",
+   "scores": {
+     "A76": {"correct": 2, "complete": 2, "sources": 2, "focus": 1, "self_sufficient": true, "issues": "Raw extracts in four languages, a long Brockhaus passage and a garbled WDR snippet dilute the clear 1648 / 24 October answer."},
+     "R84": {"correct": 2, "complete": 2, "sources": 1, "focus": 2, "self_sufficient": true, "issues": "Sources are weak (calend.ru, booksite, time.graphics, a Google Docs export) and some sentences repeat the same date twice."},
+     "M58": {"correct": 2, "complete": 2, "sources": 2, "focus": 2, "self_sufficient": true, "issues": "Says signing happened simultaneously in both cities (it took place in Münster); stray bold markup and a follow-up offer."}
+   },
+   "ranking": ["M58", "A76", "R84"],
+   "best": "M58",
+   "rationale": "M58 gives 1648 and 24 October 1648 straight away, names both treaties and cites ru.wikipedia. A76 has the strongest sourcing and precise dates but makes the assistant read through multilingual extracts. R84 is correct but rests on weak sources."},
+  {"qid": "q12",
+   "scores": {
+     "U86": {"correct": 2, "complete": 2, "sources": 2, "focus": 2, "self_sufficient": true, "issues": "Minor follow-up-offer filler at the end."},
+     "N76": {"correct": 1, "complete": 2, "sources": 1, "focus": 1, "self_sufficient": true, "issues": "Leaves 1,637 m and an obsolete 1,741 m as open alternatives, and most cited URLs are content-farm subdomains."},
+     "X59": {"correct": 2, "complete": 2, "sources": 2, "focus": 1, "self_sufficient": true, "issues": "Includes conflicting 1,637 m pages, a mistitled '1942 meters' page and an off-topic USGS rift snippet, but the Limnological Institute and Guinness extracts settle 1,642 m."}
+   },
+   "ranking": ["U86", "X59", "N76"],
+   "best": "U86",
+   "rationale": "U86 states 1,642 m clearly, explains the earlier 1,620 and 1,637 m figures and cites Wikipedia, the Limnological Institute and Britannica. X59 has authoritative sources that resolve the value but carries noisy conflicting pages. N76 hedges between values and relies on spammy sources."},
+  {"qid": "q13",
+   "scores": {
+     "I70": {"correct": 2, "complete": 2, "sources": 2, "focus": 1, "self_sufficient": true, "issues": "Long raw extracts including lists of other female laureates; the answer is clear but spread over many pages."},
+     "P45": {"correct": 1, "complete": 2, "sources": 0, "focus": 2, "self_sufficient": true, "issues": "Correct and complete (physics 1903, shared with Pierre Curie and Becquerel) but cites no sources at all, and the bold markup is broken."},
+     "L93": {"correct": 1, "complete": 2, "sources": 1, "focus": 1, "self_sufficient": true, "issues": "Wrongly says the chemistry prize came a year later, garbles 'nominated twice', and cites only popular-media sources."}
+   },
+   "ranking": ["I70", "P45", "L93"],
+   "best": "I70",
+   "rationale": "I70 supports Marie Curie, Physics, 1903 with NobelPrize.org, Guinness and History.com, including the shared-with-Pierre-and-Becquerel detail. P45 has the right answer concisely but no sources. L93 adds a factual error about the second prize and weak sources."},
+  {"qid": "q14",
+   "scores": {
+     "H90": {"correct": 2, "complete": 2, "sources": 2, "focus": 2, "self_sufficient": true, "issues": "A couple of weak sources (Facebook, Reddit) alongside authoritative ones; follow-up offer filler."},
+     "S61": {"correct": 2, "complete": 2, "sources": 2, "focus": 1, "self_sufficient": true, "issues": "Raw extracts with long cable-laying narratives and differing failure dates (early September, 18 September, 20 October) the assistant must reconcile."},
+     "T18": {"correct": 1, "complete": 2, "sources": 1, "focus": 1, "self_sufficient": true, "issues": "Gives July 28, 1866 as the primary date with July 27 only as an alternative, has a confusing paragraph on the 1865 cable, and cites many junk mirrors."}
+   },
+   "ranking": ["H90", "S61", "T18"],
+   "best": "H90",
+   "rationale": "H90 answers both parts directly (5 August 1858, failed within weeks; permanent service from 27 July 1866) with Wikipedia, History.com, LOC, IET and ETHW. S61 holds the same facts from authoritative pages but needs digging. T18 hedges the 1866 date and has weak sources."},
+  {"qid": "q15",
+   "scores": {
+     "O39": {"correct": 2, "complete": 2, "sources": 1, "focus": 2, "self_sufficient": true, "issues": "The main figure is cited to a tour-club blog; only ru.wikipedia backs the 2008 remeasurement; follow-up offer filler."},
+     "R86": {"correct": 1, "complete": 1, "sources": 1, "focus": 2, "self_sufficient": true, "issues": "Hedges with 'around 5895' plus a 5890 tourist figure, does not name Uhuru Peak or the survey values, and cites weak sources (proza.ru, travel blogs)."},
+     "L94": {"correct": 2, "complete": 2, "sources": 2, "focus": 1, "self_sufficient": true, "issues": "Long raw extracts; the Russian UNESCO text gives a wrong 5963 m, and the journal abstract includes reviewer comments."}
+   },
+   "ranking": ["L94", "O39", "R86"],
+   "best": "L94",
+   "rationale": "L94 gives 5,895 m for Uhuru Peak from Wikipedia, UNESCO, TANAPA and a geodetic paper, plus the 1999, 2008 and 2014 remeasurements that match the reference range. O39 is concise and correct but weakly sourced. R86 hedges and lacks authoritative sources."}
+]}

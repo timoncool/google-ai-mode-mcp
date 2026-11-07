@@ -74,6 +74,20 @@ The command copies the extension to a fixed folder and prints its path. Open `ch
 
 Ask in the language you want the answer in: the answer follows the language of the question (`hl` only switches Google's interface).
 
+## Benchmark
+
+25 questions with fixed answers, three search tools, one blind AI judge (Claude Opus 5.5) that saw only random ids:
+
+| | Google AI Mode MCP | Claude Code WebSearch | Exa |
+|---|---|---|---|
+| Best answer (of 25) | **10** | 5 | **10** |
+| Mean rank (1 = best) | **1.76** | 2.36 | 1.88 |
+| Fully correct | **23/25** | 19/25 | **23/25** |
+| Median time | 3.1 s | 5.1 s | **0.95 s** |
+| Text handed to the assistant, 25 answers | 31k chars | 21k chars | 433k chars |
+
+AI Mode gives the best answers overall at a fraction of Exa's text; Exa is fastest and has the best sources, WebSearch is right least often. Full report, every raw output and verdict, and a procedure to benchmark any search tool: [benchmarks/](benchmarks/README.md).
+
 ## How it works
 
 ```

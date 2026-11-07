@@ -1,0 +1,47 @@
+{"batch": "batch1", "questions": [
+  {"qid": "q01",
+   "scores": {
+     "X84": {"correct": 2, "complete": 2, "sources": 2, "focus": 2, "self_sufficient": true, "issues": "Citation numbers do not match the source list (e.g. [4] points to a LinkedIn post, [7] to a blog for QPACK), plus a trailing follow-up offer."},
+     "Z95": {"correct": 2, "complete": 2, "sources": 2, "focus": 1, "self_sufficient": true, "issues": "Raw extracts with repetition (the RFC abstract appears three times) and Datatracker metadata noise; the RFC 9000 link sits in the Wikipedia infobox, not in the RFC extract."},
+     "Z62": {"correct": 2, "complete": 2, "sources": 2, "focus": 2, "self_sufficient": true, "issues": "Garbled spliced sentences (e.g. 'which an IPFYI summary of RFC 9114 confirms...') and redundant PDF mirrors of the same RFC in the sources."}
+   },
+   "ranking": ["X84", "Z62", "Z95"],
+   "best": "X84",
+   "rationale": "X84 states RFC 9114 and QUIC (RFC 9000) up front with the rfc-editor primary link and brief relevant context. Z62 has the same facts and strong RFC sources but reads as garbled. Z95 has the authoritative text but makes the assistant dig through long, repetitive extracts."},
+  {"qid": "q02",
+   "scores": {
+     "C43": {"correct": 2, "complete": 2, "sources": 2, "focus": 2, "self_sufficient": true, "issues": "Cites the python-dev decision thread rather than the official What's New page; the remaining sources are weak aggregators (codemia, pyguide)."},
+     "I10": {"correct": 2, "complete": 2, "sources": 1, "focus": 2, "self_sufficient": true, "issues": "Only two weak Russian blog sources, no official Python docs, and a trailing follow-up offer."},
+     "X14": {"correct": 2, "complete": 2, "sources": 2, "focus": 1, "self_sufficient": true, "issues": "The official What's New 3.7 quote comes first, but it is followed by a long bpo thread, JSON/OrderedDict digressions and loosely related PEP 584 material."}
+   },
+   "ranking": ["X14", "C43", "I10"],
+   "best": "X14",
+   "rationale": "X14 opens with the reference source itself (What's New in Python 3.7) quoting the exact guarantee, and several further pages confirm 3.6 as an implementation detail. C43 gives a clean answer with an authoritative python-dev link but lacks the official docs. I10 is correct but backed only by weak blogs."},
+  {"qid": "q03",
+   "scores": {
+     "B93": {"correct": 2, "complete": 2, "sources": 2, "focus": 1, "self_sufficient": true, "issues": "The answer and official docs (including the initdb caveat) are at the top, but the output ends in a huge irrelevant Chinese GUC table."},
+     "A22": {"correct": 2, "complete": 2, "sources": 1, "focus": 2, "self_sufficient": true, "issues": "Raises a conflicting 115 figure from Command Prompt (resolved against it); sources are odd (novel.qq, ArcGIS, Puppet) and the official PostgreSQL docs are missing."},
+     "K74": {"correct": 2, "complete": 2, "sources": 1, "focus": 2, "self_sufficient": true, "issues": "No official PostgreSQL docs, only postgresqlco.nf and blogs, plus a trailing follow-up offer."}
+   },
+   "ranking": ["B93", "K74", "A22"],
+   "best": "B93",
+   "rationale": "B93 has the official postgresql.org text giving 'typically 100, might be less ... during initdb', plus corroborating references, all at the top. K74 is a clean, correct summary but has weaker sources. A22 is correct but brings in a confusing 115 figure and dubious sources."},
+  {"qid": "q04",
+   "scores": {
+     "T14": {"correct": 2, "complete": 2, "sources": 2, "focus": 1, "self_sufficient": true, "issues": "Official announcement and edition guide are at the top, but a very long release-notes diff with link lists adds bulk."},
+     "V59": {"correct": 2, "complete": 2, "sources": 1, "focus": 2, "self_sufficient": true, "issues": "Relies on SD Times and pre-release Rust blog plan posts rather than the 1.56.0 announcement; the spliced quotes read awkwardly."},
+     "K19": {"correct": 2, "complete": 2, "sources": 2, "focus": 2, "self_sufficient": true, "issues": "Includes a dubious facebook 'fb-answers' source and a trailing follow-up offer."}
+   },
+   "ranking": ["K19", "T14", "V59"],
+   "best": "K19",
+   "rationale": "K19 gives 1.56.0 and October 21, 2021 concisely, citing the official Rust 1.56.0 announcement. T14 has the same authoritative evidence but buried in a long release-notes dump. V59 is correct but cites only secondary press and pre-release planning posts."},
+  {"qid": "q05",
+   "scores": {
+     "G44": {"correct": 2, "complete": 2, "sources": 2, "focus": 2, "self_sufficient": true, "issues": "Citation numbering is slightly off (the MDN claim is tagged [2]), plus a trailing follow-up offer."},
+     "X48": {"correct": 2, "complete": 2, "sources": 2, "focus": 1, "self_sufficient": true, "issues": "The IANA registry gives 421 -> RFC 9110 §15.5.20, but the output is padded with full status-code tables and the MDN list; one page wrongly links §15.5.19."},
+     "D37": {"correct": 2, "complete": 2, "sources": 1, "focus": 2, "self_sufficient": true, "issues": "Sources are secondary (http.dev, apidog, etc.), and the output admits the RFC 9110 section number was not confirmed by its search."}
+   },
+   "ranking": ["G44", "X48", "D37"],
+   "best": "G44",
+   "rationale": "G44 directly answers 421, defined in RFC 9110 §15.5.20, links httpwg's RFC 9110 and adds relevant context on RFC 7540 and connection reuse. X48 has the most authoritative evidence (the IANA registry) but needs digging through large tables. D37 is correct but hedged and backed only by secondary sites."}
+]}

@@ -1,0 +1,47 @@
+{"batch": "batch2", "questions": [
+  {"qid": "q06",
+   "scores": {
+     "G57": {"correct": 2, "complete": 1, "sources": 2, "focus": 1, "self_sufficient": true, "issues": "Raw extracts mix 5,730 and 5,700±30 without saying which is current; no Libby 5,568; long safety-table and history filler."},
+     "M44": {"correct": 2, "complete": 1, "sources": 2, "focus": 2, "self_sufficient": true, "issues": "Gives only the classic 5,730±40 and omits the currently accepted 5,700±30; one source is a Reddit ELI5 and one a YouTube video."},
+     "M20": {"correct": 2, "complete": 1, "sources": 1, "focus": 2, "self_sufficient": true, "issues": "Names both 5,700±30 and 5,730 but omits the Libby half-life; the source list is mostly spam or scraped domains (lwn.net mirrors, policylink, bosslaser)."}
+   },
+   "ranking": ["G57", "M44", "M20"],
+   "best": "G57",
+   "rationale": "G57 is the only output that backs the currently accepted 5,700±30 value with authoritative pages (Wikipedia, Kutschera in Radiocarbon), and it also gives the classic 5,730±40. M44 is clean and adds the Libby 5,568 convention, but it presents 5,730 as the answer and leaves out 5,700±30. M20 mentions both values but leans on junk sources and misses Libby."},
+  {"qid": "q07",
+   "scores": {
+     "W98": {"correct": 2, "complete": 2, "sources": 1, "focus": 2, "self_sufficient": true, "issues": "Correct exact value and effective date, but cites only Wikipedia, StackExchange and a blog with no NIST/BIPM; one citation URL is truncated or broken."},
+     "X38": {"correct": 2, "complete": 2, "sources": 1, "focus": 2, "self_sufficient": true, "issues": "Correct and exact, but the quoted English text shows '6.02214076×1023' formatting glitches and most sources are Wikipedia mirrors or forums (cavac, lemmy, kiwix)."},
+     "C61": {"correct": 2, "complete": 2, "sources": 2, "focus": 1, "self_sufficient": true, "issues": "Primary sources (IUPAC, NIST, BIPM) state the exact value, but the full SI resolution text is repeated twice and there is an OEIS page plus other filler."}
+   },
+   "ranking": ["C61", "W98", "X38"],
+   "best": "C61",
+   "rationale": "C61 states 6.02214076×10^23 mol^-1 as exact from IUPAC, NIST and the BIPM resolution itself, which is the strongest support, and the value appears at the very top. W98 and X38 both give the right answer in Russian but rest on Wikipedia and weaker or junk sources. X38 also has garbled exponents in its quotes."},
+  {"qid": "q08",
+   "scores": {
+     "P96": {"correct": 1, "complete": 2, "sources": 0, "focus": 2, "self_sufficient": true, "issues": "Right value (−195.8 °C, 77.36 K) but no sources at all, so the claim is unsupported."},
+     "E35": {"correct": 2, "complete": 2, "sources": 2, "focus": 1, "self_sufficient": true, "issues": "Strong sources (USDA, RSC, Air Liquide, an NIST-derived page with 77.34 K), but one phase-diagram extract has errors (missing minus signs, wrong critical temperature) and there are long property tables."},
+     "I78": {"correct": 2, "complete": 2, "sources": 1, "focus": 2, "self_sufficient": true, "issues": "Correct −195.8 °C and the NIST 77.34 K figure, but every listed source is a spam or scraped page (hijacked subdomains, blogspot), with no NIST link."}
+   },
+   "ranking": ["E35", "I78", "P96"],
+   "best": "E35",
+   "rationale": "E35 gives −195.8 °C at 1 atm from several authoritative sources, including the NIST 77.34 K value the reference uses. I78 has the same figures in a concise form but cites only junk domains. P96 is correct but cites nothing."},
+  {"qid": "q09",
+   "scores": {
+     "Q82": {"correct": 2, "complete": 2, "sources": 1, "focus": 2, "self_sufficient": true, "issues": "Correct 60–100 bpm, but it admits it never reached the AHA page; sources are secondary (Mayo, UCLA, AARP) mixed with junk domains."},
+     "C94": {"correct": 2, "complete": 2, "sources": 2, "focus": 1, "self_sufficient": true, "issues": "Several heart.org pages state 60–100 bpm directly; padded with the target-heart-rate table, a duplicated Cleveland Clinic table and other pages."},
+     "F78": {"correct": 2, "complete": 2, "sources": 1, "focus": 1, "self_sufficient": true, "issues": "One heart.org link is given; the other sources are Russian clinic blogs; ends with an AI Mode disclaimer and offers to ask follow-up questions."}
+   },
+   "ranking": ["C94", "F78", "Q82"],
+   "best": "C94",
+   "rationale": "C94 quotes the AHA's own pages stating 60–100 bpm at rest for adults, so the attribution to the AHA is verified. F78 answers in Russian with a direct AHA link, but its other sources are weak and it carries boilerplate. Q82 is correct but explicitly lacks the AHA primary source and leans on secondary or junk pages."},
+  {"qid": "q10",
+   "scores": {
+     "M92": {"correct": 2, "complete": 2, "sources": 2, "focus": 2, "self_sufficient": true, "issues": ""},
+     "K41": {"correct": 2, "complete": 2, "sources": 2, "focus": 1, "self_sufficient": true, "issues": "Accurate (COX-1/COX-2, serine acetylation, steric block), but ends with a Russian AI Mode disclaimer and a follow-up offer; the first source is a Patsnap blog."},
+     "X44": {"correct": 2, "complete": 2, "sources": 2, "focus": 1, "self_sufficient": true, "issues": "Excellent sources (Tulane, NEJM, PMC, StatPearls, Wikipedia), but very long raw extracts with deep QM/MM mechanistic detail far beyond the question."}
+   },
+   "ranking": ["M92", "K41", "X44"],
+   "best": "M92",
+   "rationale": "M92 concisely names cyclooxygenase (COX-1 and COX-2), states the irreversible acetylation of an active-site serine and explains the Ser529/530 numbering difference, all backed by Wikipedia and PMC. K41 is equally correct but has UI leftovers and a weaker lead source. X44 has the strongest primary literature, but the answer is buried in long extracts."}
+]}

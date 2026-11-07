@@ -42,10 +42,10 @@ The judge saw Google AI Mode MCP output with every defect below that was still p
 |---|---|---|
 | Formulas were dropped (Avogadro constant, C‑14) | q06, q07 | fixed in 9d9cbab before the runs that were judged |
 | Names shown as clickable chips were dropped (Curie, Baikal) | q12, q13 | fixed in a2fd140 before the runs that were judged |
-| The code block caption "Use code with caution" and the language label leaked into the text | q17–q20 | judged with the defect, fixed after the review |
-| The answer footer (AI disclaimer, legal links) leaked into the text | q09, q10 | judged with the defect, fixed after the review |
-| The first real section heading was dropped as if it repeated the question | q20 | judged with the defect, fixed after the review |
-| Adjacent bold runs came out as `****` | q11, q13, q17 | judged with the defect, fixed after the review |
+| The code block caption "Use code with caution" and the language label leaked into the text | q17–q20 | judged with the defect, fixed in ff570d0 after the review |
+| The answer footer (AI disclaimer, legal links) leaked into the text | q09, q10 | judged with the defect, fixed in ff570d0 after the review |
+| The first real section heading was dropped as if it repeated the question | q20 | judged with the defect, fixed in ff570d0 after the review |
+| Adjacent bold runs came out as `****` | q11, q13, q17 | judged with the defect, fixed in ff570d0 after the review |
 
 So the scores above are for the build before the last four fixes. The fixes remove the "UI leftovers" the judge deducted focus for on q09, q10 and q17–q20. They do not touch the source deductions.
 

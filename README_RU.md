@@ -52,13 +52,39 @@ Claude Desktop, Cursor и другие клиенты — та же команд
 }
 ```
 
-**2. Расширение браузера** — едет внутри пакета:
+**2. Расширение браузера.** Его нет ни в одном магазине: вы один раз загружаете его в браузер сами.
 
-```bash
-uvx --from git+https://github.com/timoncool/google-ai-mode-mcp#subdirectory=server google-ai-mode-mcp --extension
-```
+*Chrome, Brave, Vivaldi, Opera и другие браузеры на Chromium:*
 
-Команда кладёт расширение в постоянную папку и печатает её путь. Откройте `chrome://extensions`, включите **Режим разработчика**, нажмите **Загрузить распакованное расширение** и выберите эту папку. Обновление — та же команда и круглая стрелка на карточке расширения.
+1. Достаньте расширение из пакета:
+
+   ```bash
+   uvx --from git+https://github.com/timoncool/google-ai-mode-mcp#subdirectory=server google-ai-mode-mcp --extension
+   ```
+
+   Команда печатает папку, куда его скопировала:
+
+   | ОС | Папка |
+   |---|---|
+   | Windows | `%LOCALAPPDATA%\google-ai-mode-mcp\extension` |
+   | macOS | `~/Library/Application Support/google-ai-mode-mcp/extension` |
+   | Linux | `~/.local/share/google-ai-mode-mcp/extension` |
+
+2. Откройте страницу расширений (`chrome://extensions`, `brave://extensions`, …), включите **Режим разработчика** в правом верхнем углу, нажмите **Загрузить распакованное расширение** и выберите эту папку.
+3. Не трогайте папку: браузер грузит расширение прямо из неё, и если её удалить или перенести, расширение пропадёт.
+4. В этом браузере нужно войти в Google — поиск идёт от вашего аккаунта. Режим ИИ должен быть для него доступен: `https://www.google.com/search?udm=50&q=test` должен открыть ответ режима ИИ.
+5. Проверьте связь: при запущенном MCP-сервере окно расширения пишет **Сервер и расширение подключены**, а инструмент `health` возвращает `extension_connected: true`.
+
+Обновление — снова команда из шага 1 и круглая стрелка на карточке расширения. Без uv: склонируйте репозиторий (или **Code → Download ZIP**) и загрузите его папку `extension/`.
+
+*Firefox 128+* (поиск идёт в фоновых вкладках, а не в скрытых фреймах). Версия для Firefox лежит в репозитории, в пакет она не входит:
+
+1. `git clone https://github.com/timoncool/google-ai-mode-mcp` или **Code → Download ZIP** и распакуйте.
+2. Откройте `about:debugging`, нажмите **Этот Firefox** → **Загрузить временное дополнение** и выберите `firefox-extension/manifest.json`.
+3. При перезапуске Firefox удаляет временные дополнения, так что шаг 2 придётся повторять после каждого перезапуска. Чтобы дополнение оставалось, используйте Firefox Developer Edition или Nightly:
+   - в `about:config` выставьте `xpinstall.signatures.required` в `false`;
+   - запакуйте содержимое `firefox-extension/` в zip;
+   - установите его через `about:addons` → шестерёнка → **Установить дополнение из файла**.
 
 **3. Скилл (по желанию)** — скопируйте [`skills/google-ai-mode`](skills/google-ai-mode/SKILL.md) в `~/.claude/skills/`, и Claude будет знать, когда искать и как спрашивать.
 

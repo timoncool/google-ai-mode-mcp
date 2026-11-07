@@ -52,13 +52,39 @@ Claude Desktop, Cursor and other clients — the same command in their config:
 }
 ```
 
-**2. Browser extension** — it ships inside the package:
+**2. Browser extension.** It is not in any store: you load it into the browser yourself, once.
 
-```bash
-uvx --from git+https://github.com/timoncool/google-ai-mode-mcp#subdirectory=server google-ai-mode-mcp --extension
-```
+*Chrome, Brave, Vivaldi, Opera and other Chromium browsers:*
 
-The command copies the extension to a fixed folder and prints its path. Open `chrome://extensions`, turn on **Developer mode**, click **Load unpacked** and pick that folder. To update later, run the command again and press the reload arrow on the extension's card.
+1. Copy the extension out of the package:
+
+   ```bash
+   uvx --from git+https://github.com/timoncool/google-ai-mode-mcp#subdirectory=server google-ai-mode-mcp --extension
+   ```
+
+   It prints the folder it copied to:
+
+   | OS | Folder |
+   |---|---|
+   | Windows | `%LOCALAPPDATA%\google-ai-mode-mcp\extension` |
+   | macOS | `~/Library/Application Support/google-ai-mode-mcp/extension` |
+   | Linux | `~/.local/share/google-ai-mode-mcp/extension` |
+
+2. Open the extensions page (`chrome://extensions`, `brave://extensions`, …), turn on **Developer mode** in the top right corner, click **Load unpacked** and pick that folder.
+3. Keep the folder where it is: the browser loads the extension from it, and deleting or moving it removes the extension.
+4. Be signed in to Google in this browser; searches run in your account. AI Mode must be available for it: `https://www.google.com/search?udm=50&q=test` should open an AI Mode answer.
+5. Check the connection: with the MCP server running, the extension's popup says **Server & extension connected**, and the `health` tool reports `extension_connected: true`.
+
+To update, run the command from step 1 again and press the reload arrow on the extension's card. Without uv: clone the repository (or **Code → Download ZIP**) and load its `extension/` folder.
+
+*Firefox 128+* (searches run in background tabs instead of hidden frames). The Firefox build is in the repository, not in the package:
+
+1. `git clone https://github.com/timoncool/google-ai-mode-mcp` or **Code → Download ZIP** and unpack it.
+2. Open `about:debugging`, click **This Firefox** → **Load Temporary Add-on** and pick `firefox-extension/manifest.json`.
+3. Firefox removes temporary add-ons when it restarts, so repeat step 2 after each restart. To keep it installed, use Firefox Developer Edition or Nightly:
+   - set `xpinstall.signatures.required` to `false` in `about:config`;
+   - zip the contents of `firefox-extension/`;
+   - install the zip from `about:addons` → gear menu → **Install Add-on From File**.
 
 **3. Skill (optional)** — copy [`skills/google-ai-mode`](skills/google-ai-mode/SKILL.md) to `~/.claude/skills/` so Claude knows when to search and how to ask.
 
